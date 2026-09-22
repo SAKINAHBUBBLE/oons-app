@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { Wheel } from "@/components/roulette/Wheel";
+import { useRef, useState } from "react";
+import { Wheel, type WheelHandle } from "@/components/roulette/Wheel";
 import { QuestionCard } from "@/components/roulette/QuestionCard";
 import {
   ENTRE_NOUS_CATEGORIES,
@@ -17,9 +17,15 @@ interface Draw {
 
 export default function EntreNousPage() {
   const [draw, setDraw] = useState<Draw | null>(null);
+  const wheelRef = useRef<WheelHandle>(null);
 
   function handleLand(category: EntreNousCategoryId) {
     setDraw({ category, question: pickRandomQuestion(category) });
+  }
+
+  function handleNext() {
+    setDraw(null);
+    wheelRef.current?.spin();
   }
 
   const category = draw
@@ -29,12 +35,13 @@ export default function EntreNousPage() {
   return (
     <main className={styles.page}>
       <h1 className={styles.title}>Roulette Entre Nous</h1>
-      <Wheel onLand={handleLand} />
+      <Wheel ref={wheelRef} onLand={handleLand} />
       {draw && category && (
         <QuestionCard
           category={category}
           question={draw.question}
           onClose={() => setDraw(null)}
+          onNext={handleNext}
         />
       )}
     </main>

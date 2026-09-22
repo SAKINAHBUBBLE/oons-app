@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { ENTRE_NOUS_CATEGORIES } from "@/data/entre-nous-questions";
 import type { EntreNousCategoryId } from "@/data/entre-nous-questions";
 import styles from "./Wheel.module.css";
@@ -21,7 +21,14 @@ interface WheelProps {
   disabled?: boolean;
 }
 
-export function Wheel({ onLand, disabled }: WheelProps) {
+export interface WheelHandle {
+  spin: () => void;
+}
+
+export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
+  { onLand, disabled },
+  ref,
+) {
   const [rotation, setRotation] = useState(0);
   const [spinning, setSpinning] = useState(false);
 
@@ -43,6 +50,8 @@ export function Wheel({ onLand, disabled }: WheelProps) {
       onLand(ENTRE_NOUS_CATEGORIES[targetIndex].id);
     }, 3500);
   }
+
+  useImperativeHandle(ref, () => ({ spin: handleSpin }));
 
   return (
     <div className={styles.wrapper}>
@@ -76,4 +85,4 @@ export function Wheel({ onLand, disabled }: WheelProps) {
       </button>
     </div>
   );
-}
+});
