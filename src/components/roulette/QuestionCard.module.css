@@ -1,0 +1,77 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(30, 42, 73, 0.4);
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: min(92vw, 340px);
+  padding: 40px 28px 32px;
+  border-radius: 32px;
+  border: 4px solid var(--color-navy);
+  box-shadow: 0 16px 40px rgba(30, 42, 73, 0.3);
+  text-align: center;
+  animation: popIn 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-cream);
+  color: var(--color-navy);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.badge {
+  width: 84px;
+  height: auto;
+}
+
+.question {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-navy);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

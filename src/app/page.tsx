@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { HomeBackdrop } from "@/components/home/HomeBackdrop";
 import { Wheel } from "@/components/roulette/Wheel";
+import { QuestionCard } from "@/components/roulette/QuestionCard";
 import {
   ENTRE_NOUS_CATEGORIES,
   type EntreNousCategoryId,
@@ -46,16 +47,11 @@ export default function Home() {
         <Wheel onLand={handleLand} />
 
         {draw && category && (
-          <div className={styles.result}>
-            <Image
-              src={category.icon}
-              alt={category.label}
-              width={140}
-              height={131}
-              className={styles.badge}
-            />
-            <p className={styles.question}>{draw.question}</p>
-          </div>
+          <QuestionCard
+            category={category}
+            question={draw.question}
+            onClose={() => setDraw(null)}
+          />
         )}
 
         <p className={styles.tagline}>Une même âme, trois univers possibles. ♡</p>
