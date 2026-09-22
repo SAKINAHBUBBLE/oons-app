@@ -25,14 +25,6 @@
   margin-bottom: 4px;
 }
 
-.tagline {
-  font-family: var(--font-caveat);
-  font-size: clamp(19px, 4.5vw, 23px);
-  font-weight: 600;
-  color: var(--color-navy);
-  margin-bottom: clamp(4px, 1.5vh, 10px);
-}
-
 .slogan {
   font-size: clamp(18px, 5.8vw, 28px);
   font-weight: 800;
@@ -46,44 +38,39 @@
   text-transform: uppercase;
   color: var(--color-navy);
   opacity: 0.6;
-  margin-bottom: clamp(8px, 2vh, 20px);
+  margin-bottom: clamp(12px, 3vh, 24px);
 }
 
-.categories {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  gap: clamp(6px, 2vw, 16px);
-  width: 100%;
-  max-width: 420px;
-  margin-bottom: clamp(8px, 2vh, 16px);
-}
-
-.categoryIcon {
-  width: clamp(44px, 15vw, 64px);
-  height: auto;
-  flex-shrink: 0;
-}
-
-.actions {
+.result {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
-  width: 100%;
-  max-width: 320px;
+  margin-top: clamp(8px, 2vh, 16px);
 }
 
-.primaryButton {
-  padding: 14px 28px;
-  border-radius: 999px;
-  background: var(--color-navy);
-  color: var(--color-cream);
-  font-size: 16px;
+.badge {
+  width: 120px;
+  height: auto;
+}
+
+.question {
+  font-size: 18px;
   font-weight: 600;
-  text-align: center;
+  line-height: 1.4;
+}
+
+.tagline {
+  font-family: var(--font-caveat);
+  font-size: clamp(19px, 4.5vw, 23px);
+  font-weight: 600;
+  color: var(--color-navy);
+  margin-top: clamp(8px, 2vh, 16px);
 }
 
 .secondaryButton {
+  display: inline-block;
+  margin-top: clamp(8px, 2vh, 16px);
   padding: 14px 28px;
   border-radius: 999px;
   background: transparent;
