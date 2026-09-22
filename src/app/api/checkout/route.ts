@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 
-const AMOUNT_CENTS = 999;
+const AMOUNT_CENTS = 1490;
 const CURRENCY = "eur";
-const PRODUCT_NAME = "Accès premium Oons App";
+const PRODUCT_NAME = "Entre Nous";
 
 export async function POST(request: Request) {
   const origin = request.headers.get("origin") ?? new URL(request.url).origin;

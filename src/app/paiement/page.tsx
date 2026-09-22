@@ -25,8 +25,8 @@ export default function PaiementPage() {
 
   return (
     <main className={styles.page}>
-      <h1 className={styles.title}>Accès premium Oons App</h1>
-      <p className={styles.price}>9,99 €</p>
+      <h1 className={styles.title}>Entre Nous</h1>
+      <p className={styles.price}>14,90 €</p>
       <button
         type="button"
         className={styles.payButton}
