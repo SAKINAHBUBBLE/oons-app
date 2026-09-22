@@ -8,6 +8,9 @@ export default function Home() {
       <Link href="/entre-nous" className={styles.link}>
         Roulette Entre Nous
       </Link>
+      <Link href="/paiement" className={styles.link}>
+        Accès premium
+      </Link>
     </main>
   );
 }
