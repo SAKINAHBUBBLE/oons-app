@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Wheel } from "@/components/roulette/Wheel";
 import {
   ENTRE_NOUS_CATEGORIES,
@@ -31,9 +32,13 @@ export default function EntreNousPage() {
       <Wheel onLand={handleLand} />
       {draw && category && (
         <div className={styles.result}>
-          <span className={styles.badge} style={{ backgroundColor: category.color }}>
-            {category.label}
-          </span>
+          <Image
+            src={category.icon}
+            alt={category.label}
+            width={140}
+            height={131}
+            className={styles.badge}
+          />
           <p className={styles.question}>{draw.question}</p>
         </div>
       )}

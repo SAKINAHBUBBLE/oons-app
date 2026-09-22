@@ -4,14 +4,15 @@ export interface EntreNousCategory {
   id: EntreNousCategoryId;
   label: string;
   color: string;
+  icon: string;
 }
 
 export const ENTRE_NOUS_CATEGORIES: EntreNousCategory[] = [
-  { id: "douce", label: "Question Douce", color: "#E3A9B5" },
-  { id: "profonde", label: "Question Profonde", color: "#6E4B6E" },
-  { id: "spirituel", label: "Spirituel", color: "#94A87E" },
-  { id: "defi", label: "Défi", color: "#8E3B3B" },
-  { id: "fun", label: "Question Fun", color: "#C9A227" },
+  { id: "douce", label: "Douce", color: "#FEF2C2", icon: "/icons/categories/douce.png" },
+  { id: "profonde", label: "Profonde", color: "#FBE5EA", icon: "/icons/categories/profonde.png" },
+  { id: "spirituel", label: "Spirituelle", color: "#DEF1FE", icon: "/icons/categories/spirituelle.png" },
+  { id: "defi", label: "Défi", color: "#ECE3FD", icon: "/icons/categories/defi.png" },
+  { id: "fun", label: "Ludique", color: "#FFD9C7", icon: "/icons/categories/ludique.png" },
 ];
 
 // Banque de 265 questions du pack "Entre Nous" (Confidences & Secrets Partagés).

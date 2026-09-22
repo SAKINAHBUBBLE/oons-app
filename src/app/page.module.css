@@ -1,20 +1,57 @@
 .page {
   display: flex;
-  min-height: 100dvh;
+  min-height: calc(100dvh - 72px);
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-geist-sans);
+  gap: 32px;
+  padding: 40px 24px;
+  text-align: center;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 800;
 }
 
-.link {
-  margin-top: 16px;
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 420px;
+}
+
+.categoryIcon {
+  width: 64px;
+  height: auto;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.primaryButton {
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: var(--color-navy);
+  color: var(--color-cream);
   font-size: 16px;
   font-weight: 600;
-  text-decoration: underline;
+  text-align: center;
+}
+
+.secondaryButton {
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: transparent;
+  border: 2px solid var(--color-navy);
+  color: var(--color-navy);
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
 }
