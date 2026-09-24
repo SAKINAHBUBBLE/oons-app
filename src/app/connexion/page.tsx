@@ -27,6 +27,8 @@ const ERROR_MESSAGES: Record<string, string> = {
   "auth/cancelled-popup-request": "Connexion annulée.",
   "auth/popup-blocked":
     "La fenêtre de connexion Google a été bloquée par le navigateur. Autorise les popups pour ce site.",
+  "auth/operation-not-allowed":
+    "La connexion Google n'est pas encore activée côté Firebase. Active-la dans Firebase Console → Authentication → Sign-in method → Google.",
 };
 
 function getErrorMessage(error: unknown): string {
