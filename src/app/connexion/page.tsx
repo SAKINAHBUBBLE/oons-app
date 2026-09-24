@@ -24,6 +24,11 @@ function getErrorMessage(error: unknown): string {
   if (error instanceof FirebaseError) {
     return ERROR_MESSAGES[error.code] ?? "Une erreur est survenue. Réessaie.";
   }
+  if (error instanceof Error) {
+    // Nos propres erreurs (ex. configuration Firebase manquante) portent déjà
+    // un message clair et actionnable : on l'affiche tel quel.
+    return error.message;
+  }
   return "Une erreur est survenue. Réessaie.";
 }
 
@@ -55,6 +60,7 @@ export default function ConnexionPage() {
       }
       router.replace("/app");
     } catch (err) {
+      console.error(err);
       setError(getErrorMessage(err));
       setLoading(false);
     }

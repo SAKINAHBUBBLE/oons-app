@@ -23,7 +23,7 @@ export function getFirebaseAuth(): Auth {
   if (!auth) {
     if (!firebaseConfig.apiKey) {
       throw new Error(
-        "Configuration Firebase manquante. Ajoute les variables NEXT_PUBLIC_FIREBASE_* dans .env.local (voir .env.local.example).",
+        "Configuration Firebase manquante. Vérifie les variables NEXT_PUBLIC_FIREBASE_* (.env.local en local, ou les Environment Variables du projet chez ton hébergeur en production — un redéploiement est nécessaire après les avoir ajoutées).",
       );
     }
     app = getApps()[0] ?? initializeApp(firebaseConfig);
