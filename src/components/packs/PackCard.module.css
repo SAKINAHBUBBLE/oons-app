@@ -1,0 +1,60 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 128px;
+  padding: 18px 10px 14px;
+  border-radius: 24px;
+  border: 3px solid var(--color-navy);
+  background: var(--color-profonde);
+  cursor: pointer;
+  font-family: inherit;
+  text-align: center;
+}
+
+.card.locked {
+  background: #eceef2;
+  border-color: #c7cbd6;
+  cursor: default;
+}
+
+.icon {
+  width: 56px;
+  height: 56px;
+}
+
+.lockIcon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #d8dbe3;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-navy);
+}
+
+.card.locked .name {
+  color: #8a8f9c;
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--color-navy);
+  color: var(--color-cream);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

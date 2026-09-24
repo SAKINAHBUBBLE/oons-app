@@ -8,7 +8,9 @@ import styles from "./Header.module.css";
 export function Header() {
   const pathname = usePathname();
 
-  if (pathname === "/") {
+  // "/" (sélection de packs) et "/app" (accueil connectée) affichent déjà leur
+  // propre grand logo en hero : le petit logo de nav ferait doublon.
+  if (pathname === "/" || pathname === "/app") {
     return null;
   }
 

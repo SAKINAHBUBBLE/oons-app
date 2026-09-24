@@ -2,38 +2,22 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { HomeBackdrop } from "@/components/home/HomeBackdrop";
-import { Wheel, type WheelHandle } from "@/components/roulette/Wheel";
-import { QuestionCard } from "@/components/roulette/QuestionCard";
-import {
-  ENTRE_NOUS_CATEGORIES,
-  type EntreNousCategoryId,
-} from "@/data/entre-nous-questions";
-import { pickRandomQuestion } from "@/lib/roulette";
+import { PackCard } from "@/components/packs/PackCard";
+import { PACKS } from "@/data/packs";
 import styles from "./page.module.css";
 
-interface Draw {
-  category: EntreNousCategoryId;
-  question: string;
-}
+const TOAST_DURATION_MS = 2200;
 
-export default function Home() {
-  const [draw, setDraw] = useState<Draw | null>(null);
-  const wheelRef = useRef<WheelHandle>(null);
+export default function PacksPage() {
+  const [toast, setToast] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  function handleLand(category: EntreNousCategoryId) {
-    setDraw({ category, question: pickRandomQuestion(category) });
+  function handleLocked() {
+    setToast(true);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setToast(false), TOAST_DURATION_MS);
   }
-
-  function handleNext() {
-    setDraw(null);
-    wheelRef.current?.spin();
-  }
-
-  const category = draw
-    ? ENTRE_NOUS_CATEGORIES.find((c) => c.id === draw.category)
-    : undefined;
 
   return (
     <main className={styles.page}>
@@ -42,31 +26,21 @@ export default function Home() {
         <Image
           src="/logo.webp"
           alt="Oons"
-          width={240}
-          height={120}
+          width={200}
+          height={100}
           className={styles.logo}
           priority
         />
-        <p className={styles.slogan}>Explore · Ressens · Avance</p>
-        <p className={styles.subtitle}>Petites questions, grands déclics.</p>
+        <h1 className={styles.title}>Choisis ton pack</h1>
 
-        <Wheel ref={wheelRef} onLand={handleLand} />
-
-        {draw && category && (
-          <QuestionCard
-            category={category}
-            question={draw.question}
-            onClose={() => setDraw(null)}
-            onNext={handleNext}
-          />
-        )}
-
-        <p className={styles.tagline}>Une même âme, trois univers possibles. ♡</p>
-
-        <Link href="/paiement" className={styles.secondaryButton}>
-          Accès premium
-        </Link>
+        <div className={styles.grid}>
+          {PACKS.map((pack) => (
+            <PackCard key={pack.id} pack={pack} onLocked={handleLocked} />
+          ))}
+        </div>
       </div>
+
+      {toast && <div className={styles.toast}>Bientôt disponible</div>}
     </main>
   );
 }
