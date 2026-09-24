@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Nunito, Caveat } from "next/font/google";
+import { Nunito, Caveat, Fredoka } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -13,6 +13,12 @@ const caveat = Caveat({
   variable: "--font-caveat",
   subsets: ["latin"],
   weight: ["600"],
+});
+
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
+  subsets: ["latin"],
+  weight: ["600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -34,7 +40,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${nunito.variable} ${caveat.variable}`}>
+    <html lang="fr" className={`${nunito.variable} ${caveat.variable} ${fredoka.variable}`}>
       <body>
         <Header />
         {children}

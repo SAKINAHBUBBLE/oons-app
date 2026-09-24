@@ -6,7 +6,7 @@ export default function PaiementSuccesPage() {
     <main className={styles.page}>
       <h1 className={styles.title}>Paiement réussi</h1>
       <p className={styles.price}>Merci ! Ton accès premium est activé.</p>
-      <Link href="/" className={styles.payButton}>
+      <Link href="/packs" className={styles.payButton}>
         Retour à l&apos;accueil
       </Link>
     </main>

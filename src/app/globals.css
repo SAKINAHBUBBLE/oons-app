@@ -8,6 +8,19 @@
   --color-ludique: #ffd9c7;
   --color-mint: #b7e8c8;
 
+  /* Nouvelle identité (dossier de référence 9 écrans) */
+  --color-petrol: #173b3b;
+  --color-petrol-strong: #214d49;
+  --color-raspberry: #d93d5b;
+  --color-cream-warm: #fff9f2;
+  --color-accent-coral: #ed6f70;
+  --color-accent-gold: #f5b83d;
+  --color-accent-pink: #f7c5c1;
+  --color-blob-yellow: #f9e5ad;
+  --color-blob-peach: #f8d6a6;
+  --color-blob-lavender: #d9d0f0;
+  --color-blob-sage: #c9debd;
+
   --background: var(--color-cream);
   --foreground: var(--color-navy);
 }

@@ -8,15 +8,15 @@ import styles from "./Header.module.css";
 export function Header() {
   const pathname = usePathname();
 
-  // "/" (sélection de packs) et "/app" (accueil connectée) affichent déjà leur
-  // propre grand logo en hero : le petit logo de nav ferait doublon.
-  if (pathname === "/" || pathname === "/app") {
+  // "/" (splash), "/packs" (sélection des packs) et "/app" (accueil connectée)
+  // affichent déjà leur propre grand logo en hero : le petit logo de nav ferait doublon.
+  if (pathname === "/" || pathname === "/packs" || pathname === "/app") {
     return null;
   }
 
   return (
     <header className={styles.header}>
-      <Link href="/" aria-label="Accueil Oons">
+      <Link href="/packs" aria-label="Accueil Oons">
         <Image
           src="/logo.webp"
           alt="Oons"
