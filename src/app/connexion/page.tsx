@@ -16,6 +16,8 @@ const ERROR_MESSAGES: Record<string, string> = {
   "auth/wrong-password": "Email ou mot de passe incorrect.",
   "auth/user-not-found": "Email ou mot de passe incorrect.",
   "auth/too-many-requests": "Trop de tentatives. Réessaie dans un instant.",
+  "auth/unauthorized-domain":
+    "Ce domaine n'est pas autorisé côté Firebase. Ajoute-le dans Firebase Console → Authentication → Settings → Authorized domains.",
 };
 
 function getErrorMessage(error: unknown): string {
