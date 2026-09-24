@@ -45,6 +45,38 @@
   opacity: 0.5;
 }
 
+.passwordField {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.passwordField .input {
+  padding-right: 46px;
+}
+
+.eyeToggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  color: var(--color-navy);
+  opacity: 0.6;
+  cursor: pointer;
+  padding: 0;
+}
+
+.eyeToggle:hover {
+  opacity: 1;
+}
+
 .submitButton {
   margin-top: 4px;
   padding: 12px 28px;
@@ -75,4 +107,49 @@
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 4px 0;
+  color: var(--color-navy);
+  opacity: 0.5;
+  font-size: 13px;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-navy);
+  opacity: 0.3;
+}
+
+.divider span {
+  padding: 0 12px;
+}
+
+.googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: 2px solid var(--color-navy);
+  background: var(--color-cream);
+  color: var(--color-navy);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.googleButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
