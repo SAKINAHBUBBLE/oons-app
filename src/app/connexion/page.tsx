@@ -110,6 +110,16 @@ export default function ConnexionPage() {
         >
           {isSignUp ? "Déjà un compte ? Se connecter" : "Pas encore de compte ? S'inscrire"}
         </button>
+
+        {/* Diagnostic temporaire — à retirer une fois le problème de clé API résolu. */}
+        <p className={styles.debug}>
+          apiKey lue : &quot;{process.env.NEXT_PUBLIC_FIREBASE_API_KEY ?? "(vide)"}&quot; (
+          {process.env.NEXT_PUBLIC_FIREBASE_API_KEY?.length ?? 0} caractères)
+          <br />
+          authDomain lue : &quot;{process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ?? "(vide)"}&quot;
+          <br />
+          projectId lue : &quot;{process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID ?? "(vide)"}&quot;
+        </p>
       </div>
     </main>
   );
