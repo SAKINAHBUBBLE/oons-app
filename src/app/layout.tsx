@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Nunito, Caveat, Fredoka } from "next/font/google";
+import { Nunito, Caveat, Fredoka, Fraunces } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -21,6 +21,13 @@ const fredoka = Fredoka({
   weight: ["600", "700"],
 });
 
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: ["600"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
   title: "Oons App",
   description: "Oons App",
@@ -40,7 +47,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${nunito.variable} ${caveat.variable} ${fredoka.variable}`}>
+    <html
+      lang="fr"
+      className={`${nunito.variable} ${caveat.variable} ${fredoka.variable} ${fraunces.variable}`}
+    >
       <body>
         <Header />
         {children}

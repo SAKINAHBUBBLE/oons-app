@@ -2,10 +2,10 @@
   position: relative;
   display: flex;
   min-height: 100dvh;
-  align-items: center;
   justify-content: center;
-  padding: clamp(24px, 6vh, 56px) 24px;
+  padding: clamp(18px, 4vh, 36px) 20px clamp(32px, 6vh, 56px);
   overflow: hidden;
+  background: var(--color-cream-warm);
 }
 
 .content {
@@ -14,29 +14,64 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(12px, 3vh, 20px);
-  text-align: center;
-  max-width: 520px;
+  gap: 4px;
+  width: 100%;
+  max-width: 460px;
 }
 
-.logo {
-  width: clamp(160px, 40vw, 200px);
-  height: auto;
-  margin-bottom: 4px;
+.topBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.settingsButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--color-petrol);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.settingsButton:hover {
+  opacity: 1;
 }
 
 .title {
-  font-size: clamp(20px, 5.5vw, 26px);
-  font-weight: 800;
-  color: var(--color-navy);
-  margin-bottom: clamp(4px, 1vh, 12px);
+  margin-top: 8px;
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(22px, 5.5vw, 27px);
+  font-weight: 600;
+  color: var(--color-petrol);
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-petrol);
+  opacity: 0.65;
+  text-align: center;
+  margin-bottom: 18px;
 }
 
 .grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  width: 100%;
 }
 
 .toast {
@@ -47,8 +82,8 @@
   z-index: 30;
   padding: 12px 24px;
   border-radius: 999px;
-  background: var(--color-navy);
-  color: var(--color-cream);
+  background: var(--color-petrol);
+  color: var(--color-cream-warm);
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;

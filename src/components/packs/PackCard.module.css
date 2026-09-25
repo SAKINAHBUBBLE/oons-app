@@ -3,58 +3,67 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  width: 128px;
-  padding: 18px 10px 14px;
-  border-radius: 24px;
-  border: 3px solid var(--color-navy);
-  background: var(--color-profonde);
+  gap: 6px;
+  width: 100%;
+  padding: 22px 16px 20px;
+  border-radius: 26px;
+  border: 2px solid transparent;
   cursor: pointer;
   font-family: inherit;
   text-align: center;
+  box-shadow: 0 10px 24px rgba(23, 59, 59, 0.06);
+  transition: transform 0.15s ease;
 }
 
-.card.locked {
-  background: #eceef2;
-  border-color: #c7cbd6;
-  cursor: default;
+.card:hover {
+  transform: translateY(-2px);
 }
 
-.icon {
-  width: 56px;
-  height: 56px;
+.card.active {
+  box-shadow: 0 14px 28px rgba(217, 61, 91, 0.14);
 }
 
-.lockIcon {
-  width: 56px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: #d8dbe3;
-}
-
-.name {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--color-navy);
-}
-
-.card.locked .name {
-  color: #8a8f9c;
+.card.featured {
+  grid-column: 1 / -1;
+  max-width: 300px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .badge {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  padding: 3px 10px;
+  padding: 3px 14px;
   border-radius: 999px;
-  background: var(--color-navy);
-  color: var(--color-cream);
-  font-size: 10px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(23, 59, 59, 0.12);
+  color: var(--color-petrol);
+  font-size: 12px;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  box-shadow: 0 2px 6px rgba(23, 59, 59, 0.06);
+}
+
+.name {
+  font-family: var(--font-fraunces), serif;
+  font-size: 21px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: var(--color-petrol);
+  opacity: 0.75;
+  line-height: 1.3;
+}
+
+.cta {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-raspberry), var(--color-pack-cta-end));
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
 }

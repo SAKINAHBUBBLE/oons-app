@@ -21,6 +21,23 @@
   --color-blob-lavender: #d9d0f0;
   --color-blob-sage: #c9debd;
 
+  /* Écran 2 — cartes de packs */
+  --color-pack-rose-clair: #fbe1df;
+  --color-pack-raspberry-strong: #c63f62;
+  --color-pack-cta-end: #e45169;
+  --color-pack-mint: #e2f1e6;
+  --color-pack-sage: #72b48b;
+  --color-pack-sage-dark: #2f6b4a;
+  --color-pack-lavande: #e8e2fa;
+  --color-pack-violet: #7762d9;
+  --color-pack-violet-dark: #4a3f91;
+  --color-pack-yellow-cream: #fff0cf;
+  --color-pack-orange: #f5ad27;
+  --color-pack-orange-dark: #a8591c;
+  --color-pack-blue-lilas: #dde7fa;
+  --color-pack-pervenche: #667ed6;
+  --color-pack-blue-dark: #2f4fb0;
+
   --background: var(--color-cream);
   --foreground: var(--color-navy);
 }
