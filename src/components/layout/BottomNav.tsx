@@ -57,7 +57,10 @@ export function BottomNav() {
   return (
     <nav className={styles.nav}>
       {TABS.map((tab) => {
-        const active = pathname === tab.href;
+        const active =
+          tab.href === "/app"
+            ? pathname === "/app" || pathname.startsWith("/app/question/")
+            : pathname === tab.href;
         return (
           <Link
             key={tab.href}

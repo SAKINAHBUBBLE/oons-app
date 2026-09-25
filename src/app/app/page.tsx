@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { SplashBackdrop } from "@/components/splash/SplashBackdrop";
@@ -8,24 +8,13 @@ import { OonsLogo } from "@/components/brand/OonsLogo";
 import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Wheel, type WheelHandle } from "@/components/roulette/Wheel";
-import { QuestionCard } from "@/components/roulette/QuestionCard";
-import {
-  ENTRE_NOUS_CATEGORIES,
-  type EntreNousCategoryId,
-} from "@/data/entre-nous-questions";
-import { pickRandomQuestion } from "@/lib/roulette";
+import type { EntreNousCategoryId } from "@/data/entre-nous-questions";
 import { useAuthUser } from "@/lib/useAuthUser";
 import styles from "./page.module.css";
-
-interface Draw {
-  category: EntreNousCategoryId;
-  question: string;
-}
 
 export default function AppHome() {
   const router = useRouter();
   const user = useAuthUser();
-  const [draw, setDraw] = useState<Draw | null>(null);
   const wheelRef = useRef<WheelHandle>(null);
 
   useEffect(() => {
@@ -35,21 +24,12 @@ export default function AppHome() {
   }, [user, router]);
 
   function handleLand(category: EntreNousCategoryId) {
-    setDraw({ category, question: pickRandomQuestion(category) });
-  }
-
-  function handleNext() {
-    setDraw(null);
-    wheelRef.current?.spin();
+    router.push(`/app/question/${category}`);
   }
 
   if (!user) {
     return null;
   }
-
-  const category = draw
-    ? ENTRE_NOUS_CATEGORIES.find((c) => c.id === draw.category)
-    : undefined;
 
   return (
     <main className={styles.page}>
@@ -90,15 +70,6 @@ export default function AppHome() {
         </svg>
 
         <Wheel ref={wheelRef} onLand={handleLand} />
-
-        {draw && category && (
-          <QuestionCard
-            category={category}
-            question={draw.question}
-            onClose={() => setDraw(null)}
-            onNext={handleNext}
-          />
-        )}
       </div>
 
       <BottomNav />

@@ -1,0 +1,126 @@
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  align-items: center;
+  padding: clamp(18px, 4vh, 32px) 20px 12px;
+  overflow: hidden;
+  background: var(--color-cream-warm);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 420px;
+  flex: 1;
+}
+
+.topBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.backButton,
+.settingsButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--color-petrol);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.backButton {
+  left: 0;
+}
+
+.settingsButton {
+  right: 0;
+  opacity: 0.7;
+}
+
+.packLabel {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  font-family: var(--font-fraunces), serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-raspberry);
+  text-align: center;
+}
+
+.title {
+  margin-top: 10px;
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(24px, 6.5vw, 30px);
+  font-weight: 600;
+  text-align: center;
+}
+
+.subtitle {
+  margin-top: 4px;
+  margin-bottom: 18px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  background: var(--color-card-cream);
+  border-radius: 32px;
+  padding: 32px 24px 28px;
+  box-shadow: 0 16px 36px rgba(23, 59, 59, 0.08);
+  text-align: center;
+}
+
+.question {
+  font-family: var(--font-fraunces), serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--color-title-blue);
+}
+
+.ornament {
+  display: block;
+  margin-top: 14px;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.passButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1.5px solid var(--color-raspberry);
+  background: transparent;
+  color: var(--color-raspberry);
+  font-family: var(--font-fraunces), serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
