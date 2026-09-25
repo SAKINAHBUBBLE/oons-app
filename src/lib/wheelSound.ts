@@ -91,25 +91,17 @@ function playTick(ctx: AudioContext, when: number) {
   thump.stop(when + duration + 0.02);
 }
 
-// Carillon fin joué à l'arrêt : une note principale + un léger scintillement.
-function playStopChime(ctx: AudioContext, when: number) {
-  const duration = 1.1;
-  const base = 987.77; // B5
+// Son d'arrêt : fichier fourni par l'utilisateur, joué via un simple élément
+// <audio> (pas besoin de décodage Web Audio pour un son déclenché une fois).
+let stopAudio: HTMLAudioElement | null = null;
 
-  const partials: Array<{ ratio: number; gain: number }> = [
-    { ratio: 1, gain: 0.14 },
-    { ratio: 2, gain: 0.028 },
-    { ratio: 1.002, gain: 0.032 },
-  ];
-
-  for (const partial of partials) {
-    const osc = ctx.createOscillator();
-    osc.type = "sine";
-    osc.frequency.value = base * partial.ratio;
-    applyEnvelope(ctx, osc, when, duration, { gain: partial.gain, attack: 0.025, decay: 0.6 });
-    osc.start(when);
-    osc.stop(when + duration);
+function getStopAudio(): HTMLAudioElement | null {
+  if (typeof window === "undefined") return null;
+  if (!stopAudio) {
+    stopAudio = new Audio("/sounds/wheel-stop.mp3");
+    stopAudio.preload = "auto";
   }
+  return stopAudio;
 }
 
 export function scheduleWheelTicks(delaysMs: number[]) {
@@ -123,8 +115,13 @@ export function scheduleWheelTicks(delaysMs: number[]) {
 }
 
 export function scheduleWheelStop(delayMs: number) {
-  if (!isSoundEnabled()) return;
-  const ctx = getAudioContext();
-  if (!ctx) return;
-  playStopChime(ctx, ctx.currentTime + delayMs / 1000);
+  const audio = getStopAudio();
+  if (!audio) return;
+  window.setTimeout(() => {
+    if (!isSoundEnabled()) return;
+    audio.currentTime = 0;
+    void audio.play().catch(() => {
+      // Lecture bloquée (politique navigateur) : sans impact critique.
+    });
+  }, delayMs);
 }
