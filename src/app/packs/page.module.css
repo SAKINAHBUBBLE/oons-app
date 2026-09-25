@@ -1,0 +1,102 @@
+.page {
+  position: relative;
+  display: flex;
+  min-height: 100dvh;
+  justify-content: center;
+  padding: clamp(18px, 4vh, 36px) 20px clamp(32px, 6vh, 56px);
+  overflow: hidden;
+  background: var(--color-cream-warm);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  max-width: 460px;
+}
+
+.topBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 6px;
+  margin-bottom: 14px;
+}
+
+.settingsButton {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  color: var(--color-petrol);
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.settingsButton:hover {
+  opacity: 1;
+}
+
+.title {
+  margin-top: 8px;
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(22px, 5.5vw, 27px);
+  font-weight: 600;
+  color: var(--color-petrol);
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-petrol);
+  opacity: 0.65;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  width: 100%;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 30;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: var(--color-petrol);
+  color: var(--color-cream-warm);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  animation: toastIn 0.2s ease-out;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}

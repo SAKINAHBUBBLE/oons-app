@@ -1,0 +1,49 @@
+.stubContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 420px;
+  flex: 1;
+  padding-top: clamp(48px, 14vh, 96px);
+  text-align: center;
+}
+
+.stubTitle {
+  font-family: var(--font-fraunces), serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--color-title-blue);
+}
+
+.stubText {
+  font-size: 15px;
+  color: var(--color-petrol);
+  opacity: 0.75;
+  line-height: 1.5;
+}
+
+.premiumLink {
+  margin-top: 12px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  border: 2px solid var(--color-raspberry);
+  color: var(--color-raspberry);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.signOutButton {
+  margin-top: 4px;
+  border: none;
+  background: transparent;
+  color: var(--color-petrol);
+  opacity: 0.6;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}

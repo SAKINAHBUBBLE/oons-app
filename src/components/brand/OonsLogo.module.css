@@ -1,0 +1,106 @@
+.wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wordmarkRow {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.wordmark {
+  font-family: var(--font-fredoka), sans-serif;
+  font-weight: 700;
+  font-size: 1em;
+  color: var(--color-petrol);
+  letter-spacing: -0.01em;
+}
+
+.inverted .wordmark,
+.inverted .slogan {
+  color: var(--color-cream-warm);
+}
+
+.heart {
+  position: absolute;
+  width: 0.2em;
+  height: 0.2em;
+  top: -0.14em;
+  left: 36%;
+  transform: rotate(-12deg);
+}
+
+.dashCommaTop,
+.dashRightLong,
+.dashRightShort,
+.dashSloganLeft,
+.dashSloganLeftSmall {
+  position: absolute;
+  border-radius: 999px;
+  background: var(--color-accent-coral);
+}
+
+.dashCommaTop {
+  width: 0.05em;
+  height: 0.16em;
+  top: -0.3em;
+  left: 27%;
+  transform: rotate(25deg);
+}
+
+.dashRightLong {
+  width: 0.05em;
+  height: 0.22em;
+  top: -0.32em;
+  right: 4%;
+  transform: rotate(18deg);
+}
+
+.dashRightShort {
+  width: 0.05em;
+  height: 0.16em;
+  top: -0.02em;
+  right: -3%;
+  background: var(--color-accent-gold);
+  transform: rotate(50deg);
+}
+
+.sloganWrap {
+  position: relative;
+  margin-top: 0.12em;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dashSloganLeft {
+  width: 0.04em;
+  height: 0.12em;
+  left: -14%;
+  top: 0.02em;
+  transform: rotate(30deg);
+}
+
+.dashSloganLeftSmall {
+  width: 0.03em;
+  height: 0.08em;
+  left: -18%;
+  top: 0.22em;
+  transform: rotate(40deg);
+}
+
+.slogan {
+  font-family: var(--font-caveat), cursive;
+  font-weight: 600;
+  font-size: 0.32em;
+  color: var(--color-petrol);
+  white-space: nowrap;
+}
+
+.underline {
+  width: 60%;
+  height: auto;
+  margin-top: -0.06em;
+}

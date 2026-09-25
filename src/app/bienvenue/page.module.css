@@ -1,0 +1,55 @@
+.page {
+  position: relative;
+  display: flex;
+  min-height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 6vh, 56px) 24px;
+  overflow: hidden;
+  background: var(--color-cream-warm);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(28px, 6vh, 44px);
+  max-width: 420px;
+  text-align: center;
+}
+
+.poem {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.poemLine {
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(17px, 4.6vw, 20px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--color-petrol);
+}
+
+.poemLine:last-child {
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: clamp(19px, 5.2vw, 23px);
+  color: var(--color-raspberry);
+}
+
+.continueButton {
+  padding: 14px 40px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-raspberry), var(--color-pack-cta-end));
+  color: #fff;
+  font-family: var(--font-fraunces), serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(217, 61, 91, 0.28);
+}

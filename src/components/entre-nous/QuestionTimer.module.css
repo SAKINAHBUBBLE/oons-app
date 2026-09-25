@@ -1,0 +1,32 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-warm);
+}
+
+.display {
+  font-family: var(--font-fraunces), serif;
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--color-title-blue);
+  font-variant-numeric: tabular-nums;
+}
+
+.display.done {
+  color: var(--color-raspberry);
+}
+
+.button {
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, var(--color-raspberry), var(--color-pack-cta-end));
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}

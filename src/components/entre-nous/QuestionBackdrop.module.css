@@ -1,0 +1,17 @@
+.backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 48% 52% 55% 45% / 50% 45% 55% 50%;
+}
+
+.shape,
+.branch {
+  position: absolute;
+}

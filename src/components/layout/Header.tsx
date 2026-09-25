@@ -8,15 +8,17 @@ import styles from "./Header.module.css";
 export function Header() {
   const pathname = usePathname();
 
-  // "/" (sélection de packs) et "/app" (accueil connectée) affichent déjà leur
-  // propre grand logo en hero : le petit logo de nav ferait doublon.
-  if (pathname === "/" || pathname === "/app") {
+  // Seuls les écrans de paiement utilisent encore ce petit logo de nav :
+  // toutes les autres pages affichent désormais leur propre grand logo en
+  // hero (splash, packs, connexion, roue, questions, bienvenue...), où ce
+  // logo ferait doublon.
+  if (!pathname.startsWith("/paiement")) {
     return null;
   }
 
   return (
     <header className={styles.header}>
-      <Link href="/" aria-label="Accueil Oons">
+      <Link href="/packs" aria-label="Accueil Oons">
         <Image
           src="/logo.webp"
           alt="Oons"

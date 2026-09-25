@@ -1,0 +1,52 @@
+.backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+}
+
+.blobTopLeft {
+  top: -6%;
+  left: -10%;
+  width: 62%;
+  height: 40%;
+  background: var(--color-accent-pink);
+  border-radius: 42% 58% 63% 37% / 47% 40% 60% 53%;
+}
+
+.blobTopRight {
+  top: -4%;
+  right: -10%;
+  width: 44%;
+  height: 36%;
+  background: var(--color-blob-yellow);
+  border-radius: 55% 45% 40% 60% / 60% 55% 45% 40%;
+}
+
+.blobBottomLeft {
+  bottom: -3%;
+  left: -8%;
+  width: 58%;
+  height: 25%;
+  background: var(--color-blob-peach);
+  border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%;
+}
+
+.blobBottomRight {
+  bottom: -4%;
+  right: -10%;
+  width: 50%;
+  height: 23%;
+  background: var(--color-blob-lavender);
+  border-radius: 50% 50% 42% 58% / 55% 45% 58% 42%;
+}
+
+.shape,
+.branch {
+  position: absolute;
+}

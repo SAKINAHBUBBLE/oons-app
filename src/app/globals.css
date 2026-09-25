@@ -8,6 +8,51 @@
   --color-ludique: #ffd9c7;
   --color-mint: #b7e8c8;
 
+  /* Nouvelle identité (dossier de référence 9 écrans) */
+  --color-petrol: #173b3b;
+  --color-petrol-strong: #214d49;
+  --color-raspberry: #d93d5b;
+  --color-cream-warm: #fff9f2;
+  --color-accent-coral: #ed6f70;
+  --color-accent-gold: #f5b83d;
+  --color-accent-pink: #f7c5c1;
+  --color-blob-yellow: #f9e5ad;
+  --color-blob-peach: #f8d6a6;
+  --color-blob-lavender: #d9d0f0;
+  --color-blob-sage: #c9debd;
+
+  /* Écran 2 — cartes de packs */
+  --color-pack-rose-clair: #fbe1df;
+  --color-pack-raspberry-strong: #c63f62;
+  --color-pack-cta-end: #e45169;
+  --color-pack-mint: #e2f1e6;
+  --color-pack-sage: #72b48b;
+  --color-pack-sage-dark: #2f6b4a;
+  --color-pack-lavande: #e8e2fa;
+  --color-pack-violet: #7762d9;
+  --color-pack-violet-dark: #4a3f91;
+  --color-pack-yellow-cream: #fff0cf;
+  --color-pack-orange: #f5ad27;
+  --color-pack-orange-dark: #a8591c;
+  --color-pack-blue-lilas: #dde7fa;
+  --color-pack-pervenche: #667ed6;
+  --color-pack-blue-dark: #2f4fb0;
+
+  /* Écran 3 — Connexion */
+  --color-card-cream: #fffdf8;
+  --color-border-warm: #e6ddd5;
+  --color-text-muted-warm: #9a8f8a;
+
+  /* Écran 4 — Roue (10 segments) */
+  --color-wheel-profond: #fbe1e4;
+  --color-wheel-doux: #fdecd2;
+  --color-wheel-doux-text: #b8791e;
+  --color-wheel-defi: #d3e5fb;
+  --color-wheel-defi-text: #2d5fa6;
+  --color-wheel-spirituel: #e0f2de;
+  --color-wheel-spirituel-text: #1c7a4c;
+  --color-title-blue: #07536a;
+
   --background: var(--color-cream);
   --foreground: var(--color-navy);
 }
