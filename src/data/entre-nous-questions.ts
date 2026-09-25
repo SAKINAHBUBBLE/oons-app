@@ -72,12 +72,24 @@ export const WHEEL_SEGMENTS: EntreNousCategoryId[] = [
   "spirituel",
 ];
 
+// Une question est soit une simple chaîne, soit un objet pour les quelques
+// questions "jeu" (Défi) qui indiquent un minuteur dans le dossier source
+// (ex. « [45s] ») : le support natif d'un chrono évite de laisser ce repère
+// dans le texte affiché. Voir `normalizeQuestion` dans lib/roulette.ts.
+export interface EntreNousTimedQuestion {
+  text: string;
+  hasTimerSupport: true;
+  defaultTimerSeconds: number;
+}
+
+export type EntreNousQuestionEntry = string | EntreNousTimedQuestion;
+
 // Banque de 733 questions du pack "Entre Nous", combinant la sélection Asma
 // (base NAJWA) et le complément généré (Gemini) pour chaque catégorie — la
 // distinction entre les deux sources n'est pas conservée ici, seul l'ordre du
 // dossier source est repris. L'indice de chaque question dans son tableau sert
 // d'identifiant unique pour le tirage sans répétition (voir lib/roulette.ts).
-export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, string[]> = {
+export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, EntreNousQuestionEntry[]> = {
   doux: [
     "Quelle qualité vois-tu en moi que je ne vois pas moi-même ?",
     "Quel souvenir de nous deux te fait encore sourire rien que d'y penser ?",
@@ -409,7 +421,11 @@ export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, string[]> = {
     "Synchronisation : Récitez l'alphabet ensemble en alternant une lettre chacun le plus vite possible sans hésiter.",
     "Chronomètre mental : Fermez tous les deux les yeux. Essayez de vous arrêter mentalement à pile 30 secondes. Celui qui est le plus proche a gagné.",
     "Le vendeur ambulant : Choisis un objet banal dans la pièce (une cuillère, un coussin) et essaie de le vendre à l'autre pendant 1 minute comme si c'était l'invention du siècle.",
-    "Discours de gala : Fais un discours solennel et émouvant de 45 secondes pour remercier l'autre d'exister, avec une voix d'acteur de théâtre. [45s]",
+    {
+      text: "Discours de gala : Fais un discours solennel et émouvant de 45 secondes pour remercier l'autre d'exister, avec une voix d'acteur de théâtre.",
+      hasTimerSupport: true,
+      defaultTimerSeconds: 45,
+    },
     "L'inspecteur sérieux : Pose 3 questions totalement absurdes à l'autre avec le ton le plus glacial et le plus sérieux d'un enquêteur.",
     "L'interview presse : Joue le rôle d'un journaliste qui interviewe un champion (l'autre) qui vient de réussir une tâche très banale (comme ouvrir une bouteille).",
     "Poète d'un soir : Invente un poème de 4 vers rimés en utilisant les mots « Thé », « Nuage » et ton prénom.",
@@ -440,7 +456,11 @@ export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, string[]> = {
     "Le détail caché : L'autre ferme les yeux. Tu dois changer un petit détail sur toi (enlever une montre, retrousser une manche). Il/elle a 10 secondes pour trouver quoi.",
     "Mémoire visuelle : Observe la pièce pendant 15 secondes, puis ferme les yeux. L'autre te pose 3 questions précises sur des objets de la pièce.",
     "Alphabet thématique : Donnez à tour de rôle un prénom commençant par chaque lettre de l'alphabet (A, B, C...) jusqu'à atteindre la lettre J sans bloquer.",
-    "Sans dire Oui ni Non : L'autre te pose des questions pièges pendant 45 secondes. Tu ne dois répondre ni par « oui », ni par « non ». [45s]",
+    {
+      text: "Sans dire Oui ni Non : L'autre te pose des questions pièges pendant 45 secondes. Tu ne dois répondre ni par « oui », ni par « non ».",
+      hasTimerSupport: true,
+      defaultTimerSeconds: 45,
+    },
     "Calcul rapide : L'autre te donne un calcul mental simple (ex: 7 x 8 + 15). Tu as 5 secondes pour donner la bonne réponse.",
     "Les 5 objets : Cite 5 objets jaunes (ou d'une autre couleur) présents dans la pièce en moins de 10 secondes.",
     "Mot interdit : Choisis un mot courant (ex: « vrai », « truc »). L'autre n'a plus le droit d'utiliser ce mot pendant les 3 prochains tours sous peine d'un gage doux.",
@@ -455,7 +475,11 @@ export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, string[]> = {
     "Phrases sans « E » : Prononce une phrase entière de plus de 5 mots sans utiliser une seule fois la lettre « E ».",
     "Découverte tactile : Ferme les yeux. L'autre te met un objet du quotidien dans les mains, tu dois deviner ce que c'est uniquement au toucher en 5 secondes.",
     "L'Analyse de style : Donne un conseil d'élégance ou une suggestion de style vestimentaire/coiffure sincère et constructif à l'autre pour valoriser son image.",
-    "L'Argumentaire minute : Choisis un sujet du quotidien (ex: se lever tôt, le café sans sucre) et défends-le pendant 1 minute comme s'il s'agissait d'une grande cause. [45s]",
+    {
+      text: "L'Argumentaire minute : Choisis un sujet du quotidien (ex: se lever tôt, le café sans sucre) et défends-le pendant 1 minute comme s'il s'agissait d'une grande cause.",
+      hasTimerSupport: true,
+      defaultTimerSeconds: 45,
+    },
     "L'Analyse de caractère : Décris la première qualité mentale que tu as décelée chez l'autre la première fois que vous avez eu une vraie discussion.",
     "L'Écoute active : L'autre te parle pendant 1 minute d'un sujet qui le/la passionne. Tu dois ensuite résumer l'essentiel sans l'interrompre.",
     "L'Engagement : Fais une promesse concrète et mesurable à l'autre pour lui rendre service ou l'aider dans les 7 prochains jours.",
@@ -476,7 +500,11 @@ export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, string[]> = {
     "L'Analyse du temps : Estime à la minute près le temps écoulé depuis le début de votre partie de jeu Oons.",
     "Le Duo d'organisation : Organisez à deux en moins d'une minute un menu de repas parfait pour une fin de semaine.",
     "Le Test de mémoire gustative : Énumère de mémoire les 3 derniers repas que l'autre a mangés cette semaine.",
-    "La Posture du sage : Adopte une posture immobile et sereine de méditation pendant 45 secondes complètes sans bouger un cil. [45s]",
+    {
+      text: "La Posture du sage : Adopte une posture immobile et sereine de méditation pendant 45 secondes complètes sans bouger un cil.",
+      hasTimerSupport: true,
+      defaultTimerSeconds: 45,
+    },
     "L'Éloge du silence : Maintenez un silence absolu et apaisant les yeux dans les yeux pendant 30 secondes sans gêne.",
     "La formulation de vœu : Formule un souhait de réussite professionnelle très précis pour ton binôme.",
     "Le Pitch d'un livre : Résume le dernier livre ou article marquant que tu as lu en exactement deux phrases percutantes.",

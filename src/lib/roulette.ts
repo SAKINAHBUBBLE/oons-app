@@ -2,7 +2,25 @@ import {
   ENTRE_NOUS_CATEGORIES,
   ENTRE_NOUS_QUESTIONS,
   type EntreNousCategoryId,
+  type EntreNousQuestionEntry,
 } from "@/data/entre-nous-questions";
+
+export interface NormalizedQuestion {
+  text: string;
+  hasTimerSupport: boolean;
+  defaultTimerSeconds?: number;
+}
+
+function normalizeQuestion(entry: EntreNousQuestionEntry): NormalizedQuestion {
+  if (typeof entry === "string") {
+    return { text: entry, hasTimerSupport: false };
+  }
+  return {
+    text: entry.text,
+    hasTimerSupport: entry.hasTimerSupport,
+    defaultTimerSeconds: entry.defaultTimerSeconds,
+  };
+}
 
 export function pickRandomCategory(): EntreNousCategoryId {
   const index = Math.floor(Math.random() * ENTRE_NOUS_CATEGORIES.length);
@@ -34,7 +52,7 @@ function writeJson(key: string, value: unknown) {
 // Tire une question jamais vue dans cette catégorie depuis le dernier cycle complet
 // (une fois toutes épuisées, le cycle recommence) et ne rejoue jamais la question
 // affichée juste avant, même à la jonction entre deux cycles.
-export function pickRandomQuestion(category: EntreNousCategoryId): string {
+export function pickRandomQuestion(category: EntreNousCategoryId): NormalizedQuestion {
   const questions = ENTRE_NOUS_QUESTIONS[category];
   const seenKey = SEEN_STORAGE_PREFIX + category;
   const lastKey = LAST_STORAGE_PREFIX + category;
@@ -56,5 +74,5 @@ export function pickRandomQuestion(category: EntreNousCategoryId): string {
   writeJson(seenKey, Array.from(seen));
   writeJson(lastKey, chosenIndex);
 
-  return questions[chosenIndex];
+  return normalizeQuestion(questions[chosenIndex]);
 }

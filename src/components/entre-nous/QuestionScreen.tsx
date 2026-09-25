@@ -8,9 +8,10 @@ import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { QuestionBackdrop } from "@/components/entre-nous/QuestionBackdrop";
 import { QuestionIllustration } from "@/components/entre-nous/QuestionIllustration";
+import { QuestionTimer } from "@/components/entre-nous/QuestionTimer";
 import { QUESTION_SCREENS } from "@/data/question-screens";
 import type { EntreNousCategoryId } from "@/data/entre-nous-questions";
-import { pickRandomQuestion } from "@/lib/roulette";
+import { pickRandomQuestion, type NormalizedQuestion } from "@/lib/roulette";
 import { useAuthUser } from "@/lib/useAuthUser";
 import styles from "./QuestionScreen.module.css";
 
@@ -25,7 +26,7 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
   // Tirée uniquement côté client (Math.random + localStorage) : impossible à
   // calculer côté serveur sans provoquer un écart d'hydratation, donc on
   // rend `null` au premier passage puis on tire la question après le montage.
-  const [question, setQuestion] = useState<string | null>(null);
+  const [question, setQuestion] = useState<NormalizedQuestion | null>(null);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- valeur non déterministe (aléa + localStorage), volontairement absente du rendu serveur
@@ -78,10 +79,13 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
         </p>
 
         <div className={styles.card}>
-          <p className={styles.question}>{question}</p>
+          <p className={styles.question}>{question.text}</p>
           <span className={styles.ornament} style={{ color: config.palette.accent[0] }} aria-hidden="true">
             ✦
           </span>
+          {question.hasTimerSupport && (
+            <QuestionTimer key={question.text} seconds={question.defaultTimerSeconds ?? 45} />
+          )}
         </div>
 
         <button
