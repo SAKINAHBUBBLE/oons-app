@@ -8,9 +8,11 @@ import styles from "./Header.module.css";
 export function Header() {
   const pathname = usePathname();
 
-  // "/" (splash), "/packs", "/connexion" et "/app" affichent déjà leur propre
-  // grand logo en hero : le petit logo de nav ferait doublon.
-  if (["/", "/packs", "/connexion", "/app"].includes(pathname)) {
+  // Seuls les écrans de paiement utilisent encore ce petit logo de nav :
+  // toutes les autres pages affichent désormais leur propre grand logo en
+  // hero (splash, packs, connexion, roue, questions, bienvenue...), où ce
+  // logo ferait doublon.
+  if (!pathname.startsWith("/paiement")) {
     return null;
   }
 

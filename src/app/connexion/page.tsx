@@ -11,6 +11,7 @@ import {
   setPersistence,
   browserLocalPersistence,
   browserSessionPersistence,
+  getAdditionalUserInfo,
   GoogleAuthProvider,
 } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
@@ -86,10 +87,13 @@ export default function ConnexionPage() {
       await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
       if (isSignUp) {
         await createUserWithEmailAndPassword(auth, email, password);
+        // Une inscription est par définition une toute première connexion :
+        // on passe par les écrans de bienvenue avant la roue.
+        router.replace("/bienvenue");
       } else {
         await signInWithEmailAndPassword(auth, email, password);
+        router.replace("/app");
       }
-      router.replace("/app");
     } catch (err) {
       console.error(err);
       setError(getErrorMessage(err));
@@ -104,8 +108,9 @@ export default function ConnexionPage() {
       const auth = getFirebaseAuth();
       await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      router.replace("/app");
+      const credential = await signInWithPopup(auth, provider);
+      const isNewUser = getAdditionalUserInfo(credential)?.isNewUser ?? false;
+      router.replace(isNewUser ? "/bienvenue" : "/app");
     } catch (err) {
       console.error(err);
       setError(getErrorMessage(err));
