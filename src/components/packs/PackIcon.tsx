@@ -6,19 +6,24 @@ interface PackIconProps {
   accent: string;
   accentStrong: string;
   halo: string;
+  size?: number;
 }
 
 function CoeurFeuilles({ accent, accentStrong }: { accent: string; accentStrong: string }) {
   return (
     <>
       <path
-        d="M32 50 C18 44 13 30 22 21 C31 26 36 40 32 50 Z"
-        fill="none"
-        stroke="var(--color-petrol-strong)"
-        strokeWidth="2.5"
-        strokeLinejoin="round"
+        d="M34 52 C14 46 8 28 20 16 C34 26 38 42 34 52 Z"
+        fill="var(--color-petrol-strong)"
+        transform="rotate(-8 21 34)"
       />
-      <path d="M68 53 C82 48 88 34 80 23 C69 30 62 43 68 53 Z" fill={accentStrong} opacity="0.55" />
+      <path d="M20 16 C34 26 38 42 34 52" fill="none" stroke="var(--color-blob-sage)" strokeWidth="1.4" opacity="0.7" />
+      <path
+        d="M66 55 C86 49 92 31 80 19 C66 29 62 45 66 55 Z"
+        fill={accentStrong}
+        opacity="0.6"
+        transform="rotate(8 79 37)"
+      />
       <path
         d="M50 80 C26 62 22 42 36 33 C44 28 50 34 50 39 C50 34 56 28 64 33 C78 42 74 62 50 80 Z"
         fill={accent}
@@ -126,10 +131,10 @@ const ICONS: Record<
   lotus: Lotus,
 };
 
-export function PackIcon({ kind, accent, accentStrong, halo }: PackIconProps) {
+export function PackIcon({ kind, accent, accentStrong, halo, size = 64 }: PackIconProps) {
   const IconShape = ICONS[kind];
   return (
-    <svg viewBox="0 0 100 100" width="64" height="64" aria-hidden="true">
+    <svg viewBox="0 0 100 100" width={size} height={size} aria-hidden="true">
       <circle cx="50" cy="52" r="38" fill={halo} opacity="0.55" />
       <IconShape accent={accent} accentStrong={accentStrong} />
     </svg>

@@ -38,6 +38,11 @@
   --color-pack-pervenche: #667ed6;
   --color-pack-blue-dark: #2f4fb0;
 
+  /* Écran 3 — Connexion */
+  --color-card-cream: #fffdf8;
+  --color-border-warm: #e6ddd5;
+  --color-text-muted-warm: #9a8f8a;
+
   --background: var(--color-cream);
   --foreground: var(--color-navy);
 }

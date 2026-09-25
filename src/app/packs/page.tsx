@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { OonsLogo } from "@/components/brand/OonsLogo";
 import { SplashBackdrop } from "@/components/splash/SplashBackdrop";
 import { PackCard } from "@/components/packs/PackCard";
+import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
 import { PACKS } from "@/data/packs";
 import styles from "./page.module.css";
 
@@ -31,19 +32,7 @@ export default function PacksPage() {
             onClick={handleLocked}
             aria-label="Réglages"
           >
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
-              <path
-                d="M12 15a3 3 0 100-6 3 3 0 000 6z"
-                stroke="currentColor"
-                strokeWidth="1.6"
-              />
-              <path
-                d="M19.4 13.5a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V19.5a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1.08-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H4.5a2 2 0 110-4h.09a1.65 1.65 0 001.51-1.08 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H10.5a1.65 1.65 0 001-1.51V4.5a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V10.5a1.65 1.65 0 001.51 1H19.5a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <SettingsGearIcon />
           </button>
         </div>
 
