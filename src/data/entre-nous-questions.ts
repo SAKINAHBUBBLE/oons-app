@@ -478,7 +478,7 @@ export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, EntreNousQuestion
     {
       text: "L'Argumentaire minute : Choisis un sujet du quotidien (ex: se lever tôt, le café sans sucre) et défends-le pendant 1 minute comme s'il s'agissait d'une grande cause.",
       hasTimerSupport: true,
-      defaultTimerSeconds: 45,
+      defaultTimerSeconds: 60,
     },
     "L'Analyse de caractère : Décris la première qualité mentale que tu as décelée chez l'autre la première fois que vous avez eu une vraie discussion.",
     "L'Écoute active : L'autre te parle pendant 1 minute d'un sujet qui le/la passionne. Tu dois ensuite résumer l'essentiel sans l'interrompre.",
