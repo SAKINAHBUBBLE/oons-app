@@ -1,12 +1,14 @@
 "use client";
 
-import { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
 import {
   ENTRE_NOUS_CATEGORIES,
   WHEEL_SEGMENTS,
   type EntreNousCategoryId,
 } from "@/data/entre-nous-questions";
 import { CategoryIcon } from "@/components/entre-nous/CategoryIcon";
+import { computeTickDelaysMs } from "./wheelTickSchedule";
+import { isSoundEnabled, setSoundEnabled, scheduleWheelTicks, scheduleWheelStop } from "@/lib/wheelSound";
 import styles from "./Wheel.module.css";
 
 const CATEGORY_BY_ID = Object.fromEntries(
@@ -15,6 +17,7 @@ const CATEGORY_BY_ID = Object.fromEntries(
 
 const SEGMENT_ANGLE = 360 / WHEEL_SEGMENTS.length;
 const EXTRA_SPINS = 5;
+const SPIN_DURATION_MS = 3500;
 // Marge de sécurité pour que le tirage aléatoire dans le segment ne s'approche
 // jamais du bord voisin (et donc du pointeur).
 const JITTER_RANGE = SEGMENT_ANGLE * 0.3;
@@ -39,6 +42,13 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
 ) {
   const [rotation, setRotation] = useState(0);
   const [spinning, setSpinning] = useState(false);
+  // Valeur par défaut alignée sur le rendu serveur ; corrigée juste après le
+  // montage (localStorage n'existe pas côté serveur).
+  const [soundEnabled, setSoundEnabledState] = useState(true);
+
+  useEffect(() => {
+    setSoundEnabledState(isSoundEnabled());
+  }, []);
 
   function handleSpin() {
     if (spinning || disabled) return;
@@ -52,20 +62,67 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
     const targetMod = (360 - (centerAngle + jitter) + 360) % 360;
     const currentMod = ((rotation % 360) + 360) % 360;
     const delta = (targetMod - currentMod + 360) % 360;
+    const totalRotation = EXTRA_SPINS * 360 + delta;
 
     setSpinning(true);
-    setRotation((previous) => previous + EXTRA_SPINS * 360 + delta);
+    setRotation((previous) => previous + totalRotation);
+
+    const tickDelays = computeTickDelaysMs(totalRotation, SPIN_DURATION_MS, SEGMENT_ANGLE);
+    scheduleWheelTicks(tickDelays);
+    scheduleWheelStop(SPIN_DURATION_MS);
 
     window.setTimeout(() => {
       setSpinning(false);
       onLand(WHEEL_SEGMENTS[targetIndex]);
-    }, 3500);
+    }, SPIN_DURATION_MS);
+  }
+
+  function toggleSound() {
+    const next = !soundEnabled;
+    setSoundEnabledState(next);
+    setSoundEnabled(next);
   }
 
   useImperativeHandle(ref, () => ({ spin: handleSpin }));
 
   return (
     <div className={styles.wrapper}>
+      <button
+        type="button"
+        className={styles.soundToggle}
+        onClick={toggleSound}
+        aria-label={soundEnabled ? "Couper le son de la roue" : "Activer le son de la roue"}
+        aria-pressed={!soundEnabled}
+      >
+        {soundEnabled ? (
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+            <path
+              d="M16.5 8.5a5 5 0 010 7"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+            <path
+              d="M19 6a8.5 8.5 0 010 12"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              opacity="0.6"
+            />
+          </svg>
+        ) : (
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor" />
+            <path
+              d="M16 9l5 6M21 9l-5 6"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+            />
+          </svg>
+        )}
+      </button>
       <div className={styles.pointer} />
       <div className={styles.wheelContainer}>
         <div
