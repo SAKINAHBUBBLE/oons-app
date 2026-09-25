@@ -18,6 +18,11 @@
   letter-spacing: -0.01em;
 }
 
+.inverted .wordmark,
+.inverted .slogan {
+  color: var(--color-cream-warm);
+}
+
 .heart {
   position: absolute;
   width: 0.2em;
