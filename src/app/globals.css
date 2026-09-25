@@ -43,6 +43,16 @@
   --color-border-warm: #e6ddd5;
   --color-text-muted-warm: #9a8f8a;
 
+  /* Écran 4 — Roue (10 segments) */
+  --color-wheel-profond: #fbe1e4;
+  --color-wheel-doux: #fdecd2;
+  --color-wheel-doux-text: #b8791e;
+  --color-wheel-defi: #d3e5fb;
+  --color-wheel-defi-text: #2d5fa6;
+  --color-wheel-spirituel: #e0f2de;
+  --color-wheel-spirituel-text: #1c7a4c;
+  --color-title-blue: #07536a;
+
   --background: var(--color-cream);
   --foreground: var(--color-navy);
 }

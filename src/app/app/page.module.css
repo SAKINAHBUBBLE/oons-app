@@ -1,11 +1,12 @@
 .page {
   position: relative;
   display: flex;
+  flex-direction: column;
   min-height: 100dvh;
   align-items: center;
-  justify-content: center;
-  padding: clamp(24px, 6vh, 56px) 24px;
+  padding: clamp(18px, 4vh, 32px) 20px 12px;
   overflow: hidden;
+  background: var(--color-cream-warm);
 }
 
 .content {
@@ -14,62 +15,66 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(10px, 2vh, 16px);
-  text-align: center;
-  max-width: 480px;
+  width: 100%;
+  max-width: 420px;
+  flex: 1;
 }
 
-.logo {
-  width: clamp(180px, 46vw, 240px);
-  height: auto;
+.topBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   margin-bottom: 4px;
 }
 
-.slogan {
-  font-size: clamp(18px, 5.8vw, 28px);
-  font-weight: 800;
-  color: var(--color-navy);
-}
-
-.subtitle {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-navy);
-  opacity: 0.6;
-  margin-bottom: clamp(12px, 3vh, 24px);
-}
-
-.tagline {
-  font-family: var(--font-caveat);
-  font-size: clamp(19px, 4.5vw, 23px);
-  font-weight: 600;
-  color: var(--color-navy);
-  margin-top: clamp(8px, 2vh, 16px);
-}
-
-.secondaryButton {
-  display: inline-block;
-  margin-top: clamp(8px, 2vh, 16px);
-  padding: 14px 28px;
-  border-radius: 999px;
+.backButton,
+.settingsButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
   background: transparent;
-  border: 2px solid var(--color-navy);
-  color: var(--color-navy);
-  font-size: 16px;
+  color: var(--color-petrol);
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.backButton {
+  left: 0;
+}
+
+.settingsButton {
+  right: 0;
+  opacity: 0.7;
+}
+
+.packLabel {
+  margin-top: 4px;
+  font-family: var(--font-fraunces), serif;
+  font-size: 18px;
   font-weight: 600;
+  color: var(--color-raspberry);
   text-align: center;
 }
 
-.signOutButton {
-  margin-top: 4px;
-  border: none;
-  background: transparent;
-  color: var(--color-navy);
-  opacity: 0.6;
-  font-size: 13px;
+.title {
+  margin-top: 6px;
+  margin-bottom: 8px;
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(24px, 6.5vw, 30px);
   font-weight: 600;
-  text-decoration: underline;
-  cursor: pointer;
+  line-height: 1.25;
+  color: var(--color-title-blue);
+  text-align: center;
+}
+
+.titleHeart {
+  margin-bottom: 16px;
 }

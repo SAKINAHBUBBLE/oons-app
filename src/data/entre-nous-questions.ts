@@ -1,23 +1,80 @@
-export type EntreNousCategoryId = "douce" | "profonde" | "spirituel" | "defi" | "fun";
+export type EntreNousCategoryId = "profond" | "doux" | "defi" | "decale" | "spirituel";
 
 export interface EntreNousCategory {
   id: EntreNousCategoryId;
   label: string;
-  color: string;
-  icon: string;
+  wheelColor: string;
+  textColor: string;
+  iconAccent: string;
+  iconAccentStrong: string;
 }
 
+// Couleurs et pictogrammes conformes à la roue de référence (10 segments,
+// chaque catégorie apparaît 2 fois) : voir CategoryIcon pour les pictogrammes.
 export const ENTRE_NOUS_CATEGORIES: EntreNousCategory[] = [
-  { id: "douce", label: "Douce", color: "#FEF2C2", icon: "/icons/categories/douce.png" },
-  { id: "profonde", label: "Profonde", color: "#FBE5EA", icon: "/icons/categories/profonde.png" },
-  { id: "spirituel", label: "Spirituelle", color: "#DEF1FE", icon: "/icons/categories/spirituelle.png" },
-  { id: "defi", label: "Défi", color: "#ECE3FD", icon: "/icons/categories/defi.png" },
-  { id: "fun", label: "Ludique", color: "#FFD9C7", icon: "/icons/categories/ludique.png" },
+  {
+    id: "profond",
+    label: "Profond",
+    wheelColor: "var(--color-wheel-profond)",
+    textColor: "var(--color-raspberry)",
+    iconAccent: "var(--color-accent-pink)",
+    iconAccentStrong: "var(--color-raspberry)",
+  },
+  {
+    id: "doux",
+    label: "Doux",
+    wheelColor: "var(--color-wheel-doux)",
+    textColor: "var(--color-wheel-doux-text)",
+    iconAccent: "var(--color-pack-orange)",
+    iconAccentStrong: "var(--color-wheel-doux-text)",
+  },
+  {
+    id: "defi",
+    label: "Défi",
+    wheelColor: "var(--color-wheel-defi)",
+    textColor: "var(--color-wheel-defi-text)",
+    iconAccent: "var(--color-wheel-defi)",
+    iconAccentStrong: "var(--color-wheel-defi-text)",
+  },
+  {
+    id: "decale",
+    label: "Décalé",
+    wheelColor: "var(--color-pack-lavande)",
+    textColor: "var(--color-pack-violet-dark)",
+    iconAccent: "var(--color-pack-violet)",
+    iconAccentStrong: "var(--color-pack-violet-dark)",
+  },
+  {
+    id: "spirituel",
+    label: "Spirituel",
+    wheelColor: "var(--color-wheel-spirituel)",
+    textColor: "var(--color-wheel-spirituel-text)",
+    iconAccent: "var(--color-pack-sage)",
+    iconAccentStrong: "var(--color-wheel-spirituel-text)",
+  },
+];
+
+// La roue affiche 10 segments : les 5 catégories, chacune exactement 2 fois,
+// dans cet ordre répété (conforme à l'écran de référence). Le composant Wheel
+// dérive à la fois la rotation ET la catégorie tirée du même index de ce
+// tableau, pour garantir que le segment sur lequel la roue s'arrête
+// détermine toujours la catégorie de la question affichée.
+export const WHEEL_SEGMENTS: EntreNousCategoryId[] = [
+  "profond",
+  "doux",
+  "defi",
+  "decale",
+  "spirituel",
+  "profond",
+  "doux",
+  "defi",
+  "decale",
+  "spirituel",
 ];
 
 // Banque de 265 questions du pack "Entre Nous" (Confidences & Secrets Partagés).
 export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, string[]> = {
-  douce: [
+  doux: [
     "Quelle est la qualité que tu vois en moi et que je ne vois pas en moi-même ?",
     "Quel souvenir de nous deux te fait encore sourire rien que d'y penser ?",
     "Si tu devais décrire notre amitié en un seul mot, ce serait lequel ?",
@@ -51,7 +108,7 @@ export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, string[]> = {
     "Si tu pouvais changer une seule chose dans notre relation, ce serait quoi ?",
     "Est-ce que tu penses qu'on prend assez soin de nous en tant qu'amies ?",
   ],
-  profonde: [
+  profond: [
     "Est-ce qu'il y a quelque chose que tu n'as jamais osé me dire par peur de ma réaction ?",
     "Quelle est la blessure que tu portes et que tu n'as jamais vraiment montrée à personne ?",
     "Est-ce qu'il y a un moment où je t'ai déçue sans le savoir ?",
@@ -155,7 +212,7 @@ export const ENTRE_NOUS_QUESTIONS: Record<EntreNousCategoryId, string[]> = {
     "Prévoyez ensemble un objectif spirituel à tenir toutes les deux ce mois-ci.",
     "Donnez-vous un nom de duo ou de groupe ce soir — rigolo, poétique ou qui vous représente vraiment — et changez-le sur WhatsApp avant de dormir.",
   ],
-  fun: [
+  decale: [
     "Tu préfères une amie qui te dit la vérité brutalement ou qui t'enveloppe dans la douceur ?",
     "Tu préfères une soirée pyjama chez moi ou une sortie improvisée à minuit ?",
     "Tu préfères que je te défende en public ou que je te reprenne en privé ?",

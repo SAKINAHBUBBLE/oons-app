@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { EntreNousCategory } from "@/data/entre-nous-questions";
+import { CategoryIcon } from "@/components/entre-nous/CategoryIcon";
 import styles from "./QuestionCard.module.css";
 
 interface QuestionCardProps {
@@ -14,7 +14,7 @@ export function QuestionCard({ category, question, onClose, onNext }: QuestionCa
     <div className={styles.backdrop} onClick={onClose}>
       <div
         className={styles.card}
-        style={{ backgroundColor: category.color }}
+        style={{ backgroundColor: category.wheelColor }}
         onClick={(event) => event.stopPropagation()}
       >
         <button
@@ -25,13 +25,15 @@ export function QuestionCard({ category, question, onClose, onNext }: QuestionCa
         >
           ×
         </button>
-        <Image
-          src={category.icon}
-          alt={category.label}
-          width={84}
-          height={79}
-          className={styles.badge}
+        <CategoryIcon
+          kind={category.id}
+          accent={category.iconAccent}
+          accentStrong={category.iconAccentStrong}
+          size={72}
         />
+        <p className={styles.categoryName} style={{ color: category.textColor }}>
+          {category.label}
+        </p>
         <p className={styles.question}>{question}</p>
         <button type="button" className={styles.nextButton} onClick={onNext}>
           Question suivante
