@@ -19,6 +19,16 @@ const DASH_PATH = "M50 6 L58 6 C62 6 62 12 58 60 C56 78 44 78 42 60 C38 12 38 6 
 const SPARKLE_PATH =
   "M50 8 C53 34 60 44 88 50 C60 56 53 66 50 92 C47 66 40 56 12 50 C40 44 47 34 50 8 Z";
 
+// Formes de fond organiques et irrégulières (pas de simples "blobs" ronds) :
+// chaque forme reste rattachée à son coin par deux bords droits, et seul le
+// bord intérieur ondule, comme un aplat peint à la main.
+const BLOB_PATHS = {
+  topLeft: "M0 0 H100 C86 16 90 32 74 44 C56 58 62 76 42 87 C24 97 8 91 0 76 Z",
+  topRight: "M100 0 H0 C14 16 10 32 26 44 C44 58 38 76 58 87 C76 97 92 91 100 76 Z",
+  bottomLeft: "M0 100 H100 C86 84 90 68 74 56 C56 42 62 24 42 13 C24 3 8 9 0 24 Z",
+  bottomRight: "M100 100 H0 C14 84 10 68 26 56 C44 42 38 24 58 13 C76 3 92 9 100 24 Z",
+} as const;
+
 // Fleur simple à 6 pétales avec cœur doré, tracée comme un motif fait main.
 function Flower({ color }: { color: string }) {
   const petals = Array.from({ length: 6 }, (_, index) => index * 60);
@@ -86,15 +96,23 @@ const SHAPES: Shape[] = [
 export function SplashBackdrop() {
   return (
     <div className={styles.backdrop} aria-hidden="true">
-      <div className={`${styles.blob} ${styles.blobTopLeft}`} />
-      <div className={`${styles.blob} ${styles.blobTopRight}`} />
-      <div className={`${styles.blob} ${styles.blobBottomLeft}`} />
-      <div className={`${styles.blob} ${styles.blobBottomRight}`} />
+      <svg className={`${styles.blob} ${styles.blobTopLeft}`} viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d={BLOB_PATHS.topLeft} fill="var(--color-accent-pink)" />
+      </svg>
+      <svg className={`${styles.blob} ${styles.blobTopRight}`} viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d={BLOB_PATHS.topRight} fill="var(--color-blob-yellow)" />
+      </svg>
+      <svg className={`${styles.blob} ${styles.blobBottomLeft}`} viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d={BLOB_PATHS.bottomLeft} fill="var(--color-blob-peach)" />
+      </svg>
+      <svg className={`${styles.blob} ${styles.blobBottomRight}`} viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d={BLOB_PATHS.bottomRight} fill="var(--color-blob-lavender)" />
+      </svg>
 
-      <svg className={styles.branch} style={{ top: "9%", right: "15%", width: 38, height: 38 }} viewBox="0 0 100 100">
+      <svg className={styles.branch} style={{ top: "6%", right: "8%", width: 78, height: 78 }} viewBox="0 0 100 100">
         <LeafBranch leaves={2} />
       </svg>
-      <svg className={styles.branch} style={{ bottom: "1%", left: "3%", width: 84, height: 84 }} viewBox="0 0 100 100">
+      <svg className={styles.branch} style={{ bottom: "-2%", left: "-2%", width: 150, height: 150 }} viewBox="0 0 100 100">
         <LeafBranch leaves={5} />
       </svg>
 
