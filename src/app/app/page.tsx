@@ -60,12 +60,12 @@ export default function AppHome() {
           la roue choisir ?
         </h1>
 
-        <svg className={styles.titleHeart} viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <svg className={styles.titleHeart} viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
           <path
-            d="M12 20s-6.2-4-8.6-7.6C1.5 9.6 2.5 6.5 5.2 5.4c1.9-.8 3.8-.2 5 1.3 1.2-1.5 3.1-2.1 5-1.3 2.7 1.1 3.7 4.2 2.2 6.9C18.2 16 12 20 12 20z"
+            d="M50 88 C8 60 8 24 34 14 C44 10 50 20 50 20 C50 20 56 10 66 14 C92 24 92 60 50 88 Z"
             fill="none"
             stroke="var(--color-accent-coral)"
-            strokeWidth="1.6"
+            strokeWidth="6"
           />
         </svg>
 
