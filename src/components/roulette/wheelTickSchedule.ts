@@ -26,6 +26,13 @@ function cubicBezierY(x1: number, y1: number, x2: number, y2: number, x: number)
   return bezierComponent(t, y1, y2);
 }
 
+// En dessous de cet écart, l'oreille ne distingue plus des "tac" séparés :
+// les clics fusionnent en un bourdonnement continu (effet "pet" signalé par
+// l'utilisateur). On force donc un espacement minimal entre deux clics émis,
+// ce qui éclaircit naturellement la phase la plus rapide du début du spin
+// sans toucher à la fin de la rotation, déjà bien plus espacée.
+const MIN_TICK_GAP_MS = 100;
+
 export function computeTickDelaysMs(
   totalRotationDeg: number,
   durationMs: number,
@@ -39,7 +46,7 @@ export function computeTickDelaysMs(
     (_, index) => ((index + 1) * segmentAngleDeg) / totalRotationDeg,
   );
 
-  const delays: number[] = [];
+  const rawDelays: number[] = [];
   const samples = 600;
   let prevT = 0;
   let prevProgress = 0;
@@ -57,12 +64,21 @@ export function computeTickDelaysMs(
       const fraction = targetFractions[boundaryIndex];
       const ratio = progress === prevProgress ? 0 : (fraction - prevProgress) / (progress - prevProgress);
       const time = prevT + ratio * (t - prevT);
-      delays.push(time * durationMs);
+      rawDelays.push(time * durationMs);
       boundaryIndex++;
     }
 
     prevT = t;
     prevProgress = progress;
+  }
+
+  const delays: number[] = [];
+  let lastKept = -Infinity;
+  for (const delay of rawDelays) {
+    if (delay - lastKept >= MIN_TICK_GAP_MS) {
+      delays.push(delay);
+      lastKept = delay;
+    }
   }
 
   return delays;
