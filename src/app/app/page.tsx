@@ -23,6 +23,23 @@ export default function AppHome() {
     }
   }, [user, router]);
 
+  useEffect(() => {
+    // Tant que l'utilisateur n'est pas résolu, la roue n'est pas encore montée
+    // (voir le "if (!user) return null" plus bas) : on ne consomme le drapeau
+    // qu'une fois prêt, pour ne pas le perdre pendant la résolution de l'auth.
+    if (!user) return;
+    let shouldAutospin = false;
+    try {
+      shouldAutospin = window.sessionStorage.getItem("oons-autospin") === "1";
+      if (shouldAutospin) window.sessionStorage.removeItem("oons-autospin");
+    } catch {
+      // sessionStorage indisponible : pas de spin automatique, sans impact critique.
+    }
+    if (shouldAutospin) {
+      wheelRef.current?.spin();
+    }
+  }, [user]);
+
   function handleLand(category: EntreNousCategoryId) {
     router.push(`/app/question/${category}`);
   }

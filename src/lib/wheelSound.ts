@@ -56,37 +56,41 @@ function applyEnvelope(ctx: AudioContext, node: AudioNode, when: number, duratio
   return gainNode;
 }
 
-// Cliquetis de roue (type molette/cliquet) : un bruit très bref, filtré en
-// bande étroite vers l'aigu, avec l'enveloppe de décroissance appliquée
-// directement dans le buffer pour un transitoire net et sec — pas de souffle
-// grave, qui donnait un son mou plutôt qu'un vrai "tic" mécanique.
+// Cliquetis de roue façon cliquet/ressort (type "wheel of fortune") : un
+// petit "tock" tonal et amorti (une brève note qui chute légèrement en
+// hauteur) combiné à un souffle de bruit très court pour l'attaque du choc —
+// plus rond et moins perçant qu'un simple bruit filtré en aigu.
 function playTick(ctx: AudioContext, when: number) {
-  const duration = 0.014;
-  const bufferSize = Math.max(1, Math.floor(ctx.sampleRate * duration));
+  const toneDuration = 0.03;
+  const tone = ctx.createOscillator();
+  tone.type = "triangle";
+  tone.frequency.setValueAtTime(1300, when);
+  tone.frequency.exponentialRampToValueAtTime(850, when + 0.02);
+  applyEnvelope(ctx, tone, when, toneDuration, { gain: 0.28, attack: 0.001, decay: 0.026 });
+  tone.start(when);
+  tone.stop(when + toneDuration + 0.01);
+
+  const noiseDuration = 0.006;
+  const bufferSize = Math.max(1, Math.floor(ctx.sampleRate * noiseDuration));
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const data = buffer.getChannelData(0);
   for (let i = 0; i < bufferSize; i++) {
     const decay = 1 - i / bufferSize;
-    data[i] = (Math.random() * 2 - 1) * decay * decay;
+    data[i] = (Math.random() * 2 - 1) * decay;
   }
 
   const source = ctx.createBufferSource();
   source.buffer = buffer;
 
-  const highpass = ctx.createBiquadFilter();
-  highpass.type = "highpass";
-  highpass.frequency.value = 1500;
-
   const bandpass = ctx.createBiquadFilter();
   bandpass.type = "bandpass";
-  bandpass.frequency.value = 3200;
-  bandpass.Q.value = 1.1;
+  bandpass.frequency.value = 1700;
+  bandpass.Q.value = 0.8;
 
-  source.connect(highpass);
-  highpass.connect(bandpass);
-  applyEnvelope(ctx, bandpass, when, duration, { gain: 0.4, attack: 0.0005, decay: duration - 0.0005 });
+  source.connect(bandpass);
+  applyEnvelope(ctx, bandpass, when, noiseDuration, { gain: 0.16, attack: 0.0003, decay: noiseDuration - 0.0003 });
   source.start(when);
-  source.stop(when + duration + 0.01);
+  source.stop(when + noiseDuration + 0.005);
 }
 
 // Son d'arrêt : fichier fourni par l'utilisateur, joué via un simple élément
