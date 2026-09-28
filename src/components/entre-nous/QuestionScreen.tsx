@@ -11,7 +11,7 @@ import { QuestionIllustration } from "@/components/entre-nous/QuestionIllustrati
 import { QuestionTimer } from "@/components/entre-nous/QuestionTimer";
 import { QUESTION_SCREENS } from "@/data/question-screens";
 import type { EntreNousCategoryId } from "@/data/entre-nous-questions";
-import { pickRandomCategory, pickRandomQuestion, type NormalizedQuestion } from "@/lib/roulette";
+import { pickRandomQuestion, type NormalizedQuestion } from "@/lib/roulette";
 import { useAuthUser } from "@/lib/useAuthUser";
 import styles from "./QuestionScreen.module.css";
 
@@ -22,10 +22,7 @@ interface QuestionScreenProps {
 export function QuestionScreen({ categoryId }: QuestionScreenProps) {
   const router = useRouter();
   const user = useAuthUser();
-  // La catégorie affichée peut changer sans navigation (voir handlePass) :
-  // on la garde en état local, initialisé depuis l'URL.
-  const [activeCategoryId, setActiveCategoryId] = useState(categoryId);
-  const config = QUESTION_SCREENS[activeCategoryId];
+  const config = QUESTION_SCREENS[categoryId];
   // Tirée uniquement côté client (Math.random + localStorage) : impossible à
   // calculer côté serveur sans provoquer un écart d'hydratation, donc on
   // rend `null` au premier passage puis on tire la question après le montage.
@@ -33,17 +30,20 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- valeur non déterministe (aléa + localStorage), volontairement absente du rendu serveur
-    setQuestion(pickRandomQuestion(activeCategoryId));
-  }, [activeCategoryId]);
+    setQuestion(pickRandomQuestion(categoryId));
+  }, [categoryId]);
 
   function handlePass() {
-    // "Passer cette question" relance la roue virtuellement : la nouvelle
-    // question peut appartenir à n'importe quelle catégorie, tirée au sort,
-    // sans repasser par l'écran Roue (moins de friction, plus immédiat).
-    const nextCategoryId = pickRandomCategory();
-    setActiveCategoryId(nextCategoryId);
-    setQuestion(pickRandomQuestion(nextCategoryId));
-    router.replace(`/app/question/${nextCategoryId}`, { scroll: false });
+    // "Passer cette question" relance vraiment la roue (avec son animation),
+    // exactement comme depuis l'écran d'accueil : on repart sur /app avec un
+    // indicateur qui déclenche le spin automatiquement à l'arrivée.
+    try {
+      window.sessionStorage.setItem("oons-autospin", "1");
+    } catch {
+      // sessionStorage indisponible (navigation privée, quota...) : le spin
+      // automatique sera simplement ignoré, sans impact critique.
+    }
+    router.push("/app");
   }
 
   useEffect(() => {
