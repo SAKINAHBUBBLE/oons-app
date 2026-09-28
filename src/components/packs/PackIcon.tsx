@@ -9,26 +9,12 @@ interface PackIconProps {
   size?: number;
 }
 
-function CoeurFeuilles({ accent, accentStrong }: { accent: string; accentStrong: string }) {
+function CoeurFeuilles({ accent }: { accent: string; accentStrong: string }) {
   return (
-    <>
-      <path
-        d="M34 52 C14 46 8 28 20 16 C34 26 38 42 34 52 Z"
-        fill="var(--color-petrol-strong)"
-        transform="rotate(-8 21 34)"
-      />
-      <path d="M20 16 C34 26 38 42 34 52" fill="none" stroke="var(--color-blob-sage)" strokeWidth="1.4" opacity="0.7" />
-      <path
-        d="M66 55 C86 49 92 31 80 19 C66 29 62 45 66 55 Z"
-        fill={accentStrong}
-        opacity="0.6"
-        transform="rotate(8 79 37)"
-      />
-      <path
-        d="M50 80 C26 62 22 42 36 33 C44 28 50 34 50 39 C50 34 56 28 64 33 C78 42 74 62 50 80 Z"
-        fill={accent}
-      />
-    </>
+    <path
+      d="M50 80 C26 62 22 42 36 33 C44 28 50 34 50 39 C50 34 56 28 64 33 C78 42 74 62 50 80 Z"
+      fill={accent}
+    />
   );
 }
 

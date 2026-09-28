@@ -56,39 +56,37 @@ function applyEnvelope(ctx: AudioContext, node: AudioNode, when: number, duratio
   return gainNode;
 }
 
-// Petit "clic" de bois doux : bruit filtré + un souffle de sinusoïde grave.
+// Cliquetis de roue (type molette/cliquet) : un bruit très bref, filtré en
+// bande étroite vers l'aigu, avec l'enveloppe de décroissance appliquée
+// directement dans le buffer pour un transitoire net et sec — pas de souffle
+// grave, qui donnait un son mou plutôt qu'un vrai "tic" mécanique.
 function playTick(ctx: AudioContext, when: number) {
-  const duration = 0.02;
+  const duration = 0.014;
   const bufferSize = Math.max(1, Math.floor(ctx.sampleRate * duration));
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
   const data = buffer.getChannelData(0);
   for (let i = 0; i < bufferSize; i++) {
-    data[i] = Math.random() * 2 - 1;
+    const decay = 1 - i / bufferSize;
+    data[i] = (Math.random() * 2 - 1) * decay * decay;
   }
 
   const source = ctx.createBufferSource();
   source.buffer = buffer;
 
-  const lowpass = ctx.createBiquadFilter();
-  lowpass.type = "lowpass";
-  lowpass.frequency.value = 3000;
-
   const highpass = ctx.createBiquadFilter();
   highpass.type = "highpass";
-  highpass.frequency.value = 300;
+  highpass.frequency.value = 1500;
 
-  source.connect(lowpass);
-  lowpass.connect(highpass);
-  applyEnvelope(ctx, highpass, when, duration, { gain: 0.22, attack: 0.001, decay: 0.01 });
+  const bandpass = ctx.createBiquadFilter();
+  bandpass.type = "bandpass";
+  bandpass.frequency.value = 3200;
+  bandpass.Q.value = 1.1;
+
+  source.connect(highpass);
+  highpass.connect(bandpass);
+  applyEnvelope(ctx, bandpass, when, duration, { gain: 0.4, attack: 0.0005, decay: duration - 0.0005 });
   source.start(when);
-  source.stop(when + duration + 0.02);
-
-  const thump = ctx.createOscillator();
-  thump.type = "sine";
-  thump.frequency.value = 700;
-  applyEnvelope(ctx, thump, when, duration, { gain: 0.16, attack: 0.001, decay: 0.012 });
-  thump.start(when);
-  thump.stop(when + duration + 0.02);
+  source.stop(when + duration + 0.01);
 }
 
 // Son d'arrêt : fichier fourni par l'utilisateur, joué via un simple élément

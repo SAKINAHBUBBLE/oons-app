@@ -160,9 +160,9 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
           })}
         </div>
         <div className={styles.hub}>
-          <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
             <path
-              d="M12 21s-6.7-4.35-9.3-8.28C.6 9.98 1.6 6.4 4.6 5.1c2-.86 4.1-.2 5.4 1.4 1.3-1.6 3.4-2.26 5.4-1.4 3 1.3 4 4.88 1.9 7.62C18.7 16.65 12 21 12 21z"
+              d="M50 88 C8 60 8 24 34 14 C44 10 50 20 50 20 C50 20 56 10 66 14 C92 24 92 60 50 88 Z"
               fill="var(--color-raspberry)"
             />
           </svg>
