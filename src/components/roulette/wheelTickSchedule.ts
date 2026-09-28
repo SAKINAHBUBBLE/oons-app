@@ -31,7 +31,7 @@ function cubicBezierY(x1: number, y1: number, x2: number, y2: number, x: number)
 // l'utilisateur). On force donc un espacement minimal entre deux clics émis,
 // ce qui éclaircit naturellement la phase la plus rapide du début du spin
 // sans toucher à la fin de la rotation, déjà bien plus espacée.
-const MIN_TICK_GAP_MS = 70;
+const MIN_TICK_GAP_MS = 140;
 
 export function computeTickDelaysMs(
   totalRotationDeg: number,
