@@ -70,6 +70,7 @@
 }
 
 .backButton,
+.infoButton,
 .settingsButton {
   position: absolute;
   top: 50%;
@@ -88,6 +89,11 @@
 
 .backButton {
   left: 0;
+}
+
+.infoButton {
+  right: 44px;
+  opacity: 0.7;
 }
 
 .settingsButton {

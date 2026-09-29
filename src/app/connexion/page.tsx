@@ -18,6 +18,7 @@ import {
 import { FirebaseError } from "firebase/app";
 import { getFirebaseAuth } from "@/lib/firebase";
 import { useAuthUser } from "@/lib/useAuthUser";
+import { markOnboardingNeeded } from "@/lib/onboarding";
 import { SplashBackdropV2 } from "@/components/splash/SplashBackdropV2";
 import { PackIconV2 } from "@/components/packs/PackIconV2";
 import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
@@ -138,9 +139,18 @@ export default function ConnexionPage() {
 
   useEffect(() => {
     if (user) {
-      router.replace("/app");
+      router.replace("/packs");
     }
   }, [user, router]);
+
+  useEffect(() => {
+    // La page de vente pointe ici avec ?mode=inscription pour ouvrir directement
+    // l'onglet Inscription plutôt que Connexion.
+    if (new URLSearchParams(window.location.search).get("mode") === "inscription") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- lecture de l'URL, indisponible au rendu serveur
+      setIsSignUp(true);
+    }
+  }, []);
 
   function handleLocked() {
     setToast(true);
@@ -181,12 +191,13 @@ export default function ConnexionPage() {
         if (firstName.trim()) {
           await updateProfile(credential.user, { displayName: firstName.trim() });
         }
-        // Une inscription est par définition une toute première connexion :
-        // on passe par les écrans de bienvenue avant la roue.
-        router.replace("/bienvenue");
+        // Le poème + les règles du jeu ne sont plus des pages séparées : ils
+        // s'afficheront en overlay au tout premier "Lancer la roue".
+        markOnboardingNeeded();
+        router.replace("/packs");
       } else {
         await signInWithEmailAndPassword(auth, email, password);
-        router.replace("/app");
+        router.replace("/packs");
       }
     } catch (err) {
       console.error(err);
@@ -204,7 +215,10 @@ export default function ConnexionPage() {
       const provider = new GoogleAuthProvider();
       const credential = await signInWithPopup(auth, provider);
       const isNewUser = getAdditionalUserInfo(credential)?.isNewUser ?? false;
-      router.replace(isNewUser ? "/bienvenue" : "/app");
+      if (isNewUser) {
+        markOnboardingNeeded();
+      }
+      router.replace("/packs");
     } catch (err) {
       console.error(err);
       setError(getErrorMessage(err));
@@ -233,7 +247,7 @@ export default function ConnexionPage() {
       <SplashBackdropV2 />
       <div className={styles.content}>
         <div className={styles.topBar}>
-          <Link href="/packs" className={styles.backButton} aria-label="Retour aux packs">
+          <Link href="/" className={styles.backButton} aria-label="Retour à l'accueil">
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
               <path
                 d="M15 5 8 12l7 7"

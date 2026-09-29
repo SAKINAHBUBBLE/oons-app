@@ -1,25 +1,34 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
+import { InfoIcon } from "@/components/icons/InfoIcon";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Wheel, type WheelHandle } from "@/components/roulette/Wheel";
+import { WheelOnboardingOverlay } from "@/components/onboarding/WheelOnboardingOverlay";
 import type { EntreNousCategoryId } from "@/data/entre-nous-questions";
 import { useAuthUser } from "@/lib/useAuthUser";
+import { peekOnboardingNeeded, clearOnboardingNeeded } from "@/lib/onboarding";
 import styles from "./page.module.css";
 
 export default function AppHome() {
   const router = useRouter();
   const user = useAuthUser();
   const wheelRef = useRef<WheelHandle>(null);
+  const needsOnboardingRef = useRef(false);
+  const [onboardingStep, setOnboardingStep] = useState<"poem" | "rules" | null>(null);
 
   useEffect(() => {
     if (user === null) {
       router.replace("/connexion");
     }
   }, [user, router]);
+
+  useEffect(() => {
+    needsOnboardingRef.current = peekOnboardingNeeded();
+  }, []);
 
   useEffect(() => {
     // Tant que l'utilisateur n'est pas résolu, la roue n'est pas encore montée
@@ -40,6 +49,25 @@ export default function AppHome() {
 
   function handleLand(category: EntreNousCategoryId) {
     router.push(`/app/question/${category}`);
+  }
+
+  function handleSpinAttempt(): boolean {
+    if (needsOnboardingRef.current) {
+      setOnboardingStep("poem");
+      return false;
+    }
+    return true;
+  }
+
+  function handlePoemNext() {
+    setOnboardingStep("rules");
+  }
+
+  function handleOnboardingFinish() {
+    clearOnboardingNeeded();
+    needsOnboardingRef.current = false;
+    setOnboardingStep(null);
+    wheelRef.current?.spin();
   }
 
   if (!user) {
@@ -67,6 +95,9 @@ export default function AppHome() {
           </Link>
           {/* eslint-disable-next-line @next/next/no-img-element -- asset recadré depuis l'image de référence, pas d'optimisation Next nécessaire pour un petit logo statique */}
           <img className={styles.headerLogo} src="/brand/oons-logo-primary.svg" alt="Oons" />
+          <Link href="/bienvenue/joker" className={styles.infoButton} aria-label="Revoir la règle du jeu">
+            <InfoIcon />
+          </Link>
           <Link href="/app/parametres" className={styles.settingsButton} aria-label="Réglages">
             <SettingsGearIcon />
           </Link>
@@ -78,10 +109,18 @@ export default function AppHome() {
           la roue choisir ?
         </h1>
 
-        <Wheel ref={wheelRef} onLand={handleLand} />
+        <Wheel ref={wheelRef} onLand={handleLand} onSpinAttempt={handleSpinAttempt} />
       </div>
 
       <BottomNav />
+
+      {onboardingStep && (
+        <WheelOnboardingOverlay
+          step={onboardingStep}
+          onNext={handlePoemNext}
+          onFinish={handleOnboardingFinish}
+        />
+      )}
     </main>
   );
 }
