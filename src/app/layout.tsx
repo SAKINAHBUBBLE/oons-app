@@ -26,7 +26,7 @@ const fredoka = Fredoka({
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["600"],
+  weight: "variable",
   style: ["normal", "italic"],
 });
 
