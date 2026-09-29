@@ -6,7 +6,47 @@
   align-items: center;
   padding: clamp(18px, 4vh, 32px) 20px 12px;
   overflow: hidden;
-  background: var(--color-cream-warm);
+  background: var(--color-v2-cream);
+}
+
+/* Fond minimal "Minimal Premium" : uniquement de grandes formes très
+   diffuses dans les angles, rendu vaporeux via un flou important. Aucun
+   petit motif décoratif (pas de feuille, étoile, cœur, trait, confetti). */
+.v2Blob {
+  position: absolute;
+  z-index: 0;
+  width: 55vw;
+  height: 55vw;
+  max-width: 380px;
+  max-height: 380px;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.v2Blob[data-position="top-left"] {
+  top: -22%;
+  left: -22%;
+  background: radial-gradient(circle, var(--color-v2-blob-pink), transparent 70%);
+}
+
+.v2Blob[data-position="top-right"] {
+  top: -18%;
+  right: -22%;
+  background: radial-gradient(circle, var(--color-v2-blob-butter), transparent 70%);
+}
+
+.v2Blob[data-position="bottom-left"] {
+  bottom: -20%;
+  left: -20%;
+  background: radial-gradient(circle, var(--color-v2-blob-peach), transparent 70%);
+}
+
+.v2Blob[data-position="bottom-right"] {
+  bottom: -22%;
+  right: -20%;
+  background: radial-gradient(circle, var(--color-v2-blob-lavender), transparent 70%);
 }
 
 .content {
@@ -41,7 +81,7 @@
   height: 36px;
   border: none;
   background: transparent;
-  color: var(--color-petrol);
+  color: var(--color-v2-navy);
   opacity: 0.8;
   cursor: pointer;
 }
@@ -55,26 +95,18 @@
   opacity: 0.7;
 }
 
-.packLabel {
-  margin-top: 4px;
-  font-family: var(--font-fraunces), serif;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--color-raspberry);
-  text-align: center;
+.headerLogo {
+  height: 48px;
+  width: auto;
 }
 
 .title {
-  margin-top: 6px;
-  margin-bottom: 8px;
+  margin-top: 22px;
+  margin-bottom: 28px;
   font-family: var(--font-fraunces), serif;
-  font-size: clamp(24px, 6.5vw, 30px);
-  font-weight: 600;
+  font-size: clamp(26px, 7vw, 34px);
+  font-weight: 700;
   line-height: 1.25;
-  color: var(--color-title-blue);
+  color: var(--color-v2-navy);
   text-align: center;
-}
-
-.titleHeart {
-  margin-bottom: 16px;
 }

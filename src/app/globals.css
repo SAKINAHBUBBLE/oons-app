@@ -53,6 +53,42 @@
   --color-wheel-spirituel-text: #1c7a4c;
   --color-title-blue: #07536a;
 
+  /* Nouvelle identité V2 "Minimal Premium" — écran Roue (en cours de déploiement
+     progressif, écran par écran ; les autres écrans restent sur l'identité
+     précédente tant qu'ils n'ont pas eux-mêmes été refaits). */
+  --color-v2-navy: #16264a;
+  --color-v2-coral: #f97e68;
+  --color-v2-coral-strong: #f2624a;
+  --color-v2-cream: #fdf8f3;
+  --color-v2-blob-pink: #fce1de;
+  --color-v2-blob-butter: #fbf0c8;
+  --color-v2-blob-peach: #fdecd8;
+  --color-v2-blob-lavender: #e9e1fb;
+  --color-v2-wheel-profond-bg: #fce1e0;
+  --color-v2-wheel-profond-text: #e8637c;
+  --color-v2-wheel-douceur-bg: #fdecd2;
+  --color-v2-wheel-douceur-text: #c9852e;
+  --color-v2-wheel-defi-bg: #dceafc;
+  --color-v2-wheel-defi-text: #3170c4;
+  --color-v2-wheel-decale-bg: #e7defb;
+  --color-v2-wheel-decale-text: #7a52d6;
+  --color-v2-wheel-spirituel-bg: #dbf2e6;
+  --color-v2-wheel-spirituel-text: #1f8a5a;
+
+  /* Pictogrammes de la roue : deux tons bien distincts et suffisamment
+     saturés pour rester lisibles à petite taille (contrairement aux paires
+     fond très pâle + texte très soutenu, qui se fondaient l'une dans l'autre
+     une fois utilisées comme couleurs d'icône). */
+  --color-v2-icon-profond-a: #f6a8b4;
+  --color-v2-icon-profond-b: #ef7089;
+  --color-v2-icon-douceur-a: #fbc177;
+  --color-v2-icon-douceur-b: #e8963d;
+  --color-v2-icon-defi-a: #afd0f7;
+  --color-v2-icon-defi-b: #4a85d8;
+  --color-v2-icon-decale-a: #e7a6d6;
+  --color-v2-icon-decale-b: #9b6fe0;
+  --color-v2-icon-spirituel: #3fb98a;
+
   --background: var(--color-cream);
   --foreground: var(--color-navy);
 }

@@ -3,8 +3,6 @@
 import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { SplashBackdrop } from "@/components/splash/SplashBackdrop";
-import { OonsLogo } from "@/components/brand/OonsLogo";
 import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { Wheel, type WheelHandle } from "@/components/roulette/Wheel";
@@ -50,7 +48,10 @@ export default function AppHome() {
 
   return (
     <main className={styles.page}>
-      <SplashBackdrop />
+      <div className={styles.v2Blob} data-position="top-left" />
+      <div className={styles.v2Blob} data-position="top-right" />
+      <div className={styles.v2Blob} data-position="bottom-left" />
+      <div className={styles.v2Blob} data-position="bottom-right" />
       <div className={styles.content}>
         <div className={styles.topBar}>
           <Link href="/packs" className={styles.backButton} aria-label="Retour aux packs">
@@ -64,27 +65,18 @@ export default function AppHome() {
               />
             </svg>
           </Link>
-          <OonsLogo size={56} showSlogan={false} />
+          {/* eslint-disable-next-line @next/next/no-img-element -- asset recadré depuis l'image de référence, pas d'optimisation Next nécessaire pour un petit logo statique */}
+          <img className={styles.headerLogo} src="/brand/oons-logo-v2.png" alt="Oons" />
           <button type="button" className={styles.settingsButton} aria-label="Réglages">
             <SettingsGearIcon />
           </button>
         </div>
 
-        <p className={styles.packLabel}>Entre Nous</p>
         <h1 className={styles.title}>
           Et si on laissait
           <br />
           la roue choisir ?
         </h1>
-
-        <svg className={styles.titleHeart} viewBox="0 0 100 100" width="22" height="22" aria-hidden="true">
-          <path
-            d="M50 88 C8 60 8 24 34 14 C44 10 50 20 50 20 C50 20 56 10 66 14 C92 24 92 60 50 88 Z"
-            fill="none"
-            stroke="var(--color-accent-coral)"
-            strokeWidth="6"
-          />
-        </svg>
 
         <Wheel ref={wheelRef} onLand={handleLand} />
       </div>

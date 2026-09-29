@@ -21,6 +21,22 @@ const TABS = [
     ),
   },
   {
+    href: "/app/historique",
+    label: "Historique",
+    icon: () => (
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none" aria-hidden="true">
+        <path d="M12 7v5l3.5 2" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M4.5 9A7.5 7.5 0 1112 19.5"
+          stroke="currentColor"
+          strokeWidth="1.7"
+          strokeLinecap="round"
+        />
+        <path d="M4.5 9V4.5M4.5 9H9" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
     href: "/app/favoris",
     label: "Favoris",
     icon: () => (
