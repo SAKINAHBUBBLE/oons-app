@@ -1,0 +1,138 @@
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 4vh, 30px);
+  width: 100%;
+  max-width: 440px;
+}
+
+.logo {
+  width: clamp(120px, 36vw, 160px);
+  height: auto;
+}
+
+.titleBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(26px, 7vw, 32px);
+  font-weight: 700;
+  color: var(--color-v2-navy);
+}
+
+.subtitle {
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(17px, 4.4vw, 20px);
+  font-weight: 500;
+  color: var(--color-v2-lavender-text);
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+  padding: 18px;
+  border-radius: 26px;
+  background: var(--color-v2-card-bg);
+  box-shadow: 0 6px 18px rgba(22, 38, 74, 0.06);
+}
+
+.aura {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.auraRose {
+  background: var(--color-v2-card-rose-bg);
+}
+
+.auraBlue {
+  background: var(--color-v2-card-blue-bg);
+}
+
+.auraYellow {
+  background: var(--color-v2-blob-butter);
+}
+
+.cardText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.capsule {
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.capsuleRose {
+  background: var(--color-v2-card-rose-bg);
+  color: var(--color-v2-coral);
+}
+
+.capsuleBlue {
+  background: var(--color-v2-card-blue-bg);
+  color: var(--color-v2-card-blue-text);
+}
+
+.capsuleYellow {
+  background: var(--color-v2-blob-butter);
+  color: var(--color-v2-card-yellow-text);
+}
+
+.cardTitle {
+  font-family: var(--font-fraunces), serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-v2-navy);
+  margin-top: 4px;
+}
+
+.cardBody {
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--color-v2-navy);
+  opacity: 0.85;
+}
+
+.startButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-v2-navy);
+  color: var(--color-v2-cream);
+  font-family: var(--font-fraunces), serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(22, 38, 74, 0.25);
+}

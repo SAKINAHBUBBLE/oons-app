@@ -30,6 +30,10 @@ const WHEEL_BACKGROUND = `conic-gradient(${WHEEL_SEGMENTS.map(
 interface WheelProps {
   onLand: (categoryId: EntreNousCategoryId) => void;
   disabled?: boolean;
+  // Appelé juste avant de faire tourner la roue ; si la fonction renvoie
+  // false, le tirage est annulé (utilisé pour intercaler le poème/les règles
+  // au tout premier lancer d'un compte neuf).
+  onSpinAttempt?: () => boolean;
 }
 
 export interface WheelHandle {
@@ -37,7 +41,7 @@ export interface WheelHandle {
 }
 
 export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
-  { onLand, disabled },
+  { onLand, disabled, onSpinAttempt },
   ref,
 ) {
   const [rotation, setRotation] = useState(0);
@@ -52,6 +56,7 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
 
   function handleSpin() {
     if (spinning || disabled) return;
+    if (onSpinAttempt && !onSpinAttempt()) return;
 
     // Le même index pilote à la fois la rotation ET la catégorie renvoyée :
     // le segment sur lequel la roue s'arrête visuellement détermine toujours,

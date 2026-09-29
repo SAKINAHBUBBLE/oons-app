@@ -2,28 +2,27 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { SplashBackdropV2 } from "@/components/splash/SplashBackdropV2";
-import styles from "./page.module.css";
+import { VenteEntreNousContent } from "@/components/marketing/VenteEntreNousContent";
+import { useAuthUser } from "@/lib/useAuthUser";
 
-const SPLASH_DURATION_MS = 2400;
-
-export default function SplashPage() {
+// La racine est la page de vente publique "Entre Nous" pour tout visiteur non
+// connecté. Un utilisateur déjà connecté ne doit jamais la voir : il est
+// renvoyé directement vers l'écran de choix des packs.
+export default function RootPage() {
   const router = useRouter();
+  const user = useAuthUser();
 
   useEffect(() => {
-    const timeout = window.setTimeout(() => {
+    if (user) {
       router.replace("/packs");
-    }, SPLASH_DURATION_MS);
-    return () => window.clearTimeout(timeout);
-  }, [router]);
+    }
+  }, [user, router]);
 
-  return (
-    <main className={styles.page}>
-      <SplashBackdropV2 />
-      <div className={styles.content}>
-        {/* eslint-disable-next-line @next/next/no-img-element -- asset vectoriel maître unique, pas d'optimisation Next nécessaire */}
-        <img className={styles.logo} src="/brand/oons-logo-primary.svg" alt="Oons" />
-      </div>
-    </main>
-  );
+  // État de résolution de l'authentification pas encore connu : on n'affiche
+  // rien plutôt que de flasher la page de vente avant une redirection.
+  if (user === undefined || user) {
+    return null;
+  }
+
+  return <VenteEntreNousContent />;
 }
