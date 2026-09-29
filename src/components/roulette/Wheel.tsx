@@ -161,7 +161,7 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
         </div>
         <div className={styles.hub}>
           {/* eslint-disable-next-line @next/next/no-img-element -- asset recadré depuis l'image de référence, pas d'optimisation Next nécessaire pour un petit logo statique */}
-          <img className={styles.hubLogo} src="/brand/oons-logo-v2.png" alt="Oons" />
+          <img className={styles.hubLogo} src="/brand/oons-logo-primary.svg" alt="Oons" />
         </div>
       </div>
       <button
