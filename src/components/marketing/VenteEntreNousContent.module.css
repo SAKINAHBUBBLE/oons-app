@@ -1,9 +1,18 @@
 .page {
+  /* Palette propre à la page de vente (plus claire, plus chaude que le reste
+     de l'app) : volontairement locale, pour ne pas modifier les couleurs
+     --color-v2-* utilisées ailleurs (roue, packs, profil...). */
+  --sale-cream: #fff9f2;
+  --sale-navy: #1e2a49;
+  --sale-coral: #cf5a40;
+  --sale-coral-text: #b94a31;
+  --sale-quote-bg: #fce3d8;
+
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--color-v2-cream);
+  background: var(--sale-cream);
   padding-bottom: 84px; /* place pour la barre sticky */
   overflow-x: hidden;
 }
@@ -30,7 +39,7 @@
   font-family: var(--font-fraunces), serif;
   font-size: clamp(24px, 6vw, 29px);
   font-weight: 700;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   text-align: center;
   margin-bottom: 28px;
 }
@@ -38,7 +47,7 @@
 .sectionIntro {
   font-size: 15.5px;
   line-height: 1.6;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.8;
   text-align: center;
 }
@@ -83,7 +92,7 @@
   z-index: 2;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.6;
   white-space: nowrap;
 }
@@ -106,7 +115,7 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--color-v2-coral);
+  color: var(--sale-coral-text);
   margin-bottom: 22px;
 }
 
@@ -122,7 +131,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-v2-coral);
+  color: var(--sale-coral-text);
 }
 
 .heroTitle {
@@ -131,7 +140,7 @@
   font-size: clamp(30px, 8vw, 38px);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
 }
 
 .heroLead {
@@ -140,22 +149,33 @@
   font-style: italic;
   font-size: 17px;
   line-height: 1.5;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
 }
 
 .heroText {
   margin-top: 14px;
   font-size: 15px;
   line-height: 1.6;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.78;
 }
 
 .heroSubtext {
   margin-top: 14px;
   font-size: 12.5px;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.55;
+}
+
+.heroPhone {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.heroPhoneFrame {
+  width: clamp(200px, 58vw, 240px);
 }
 
 /* ---------- CTA ---------- */
@@ -167,12 +187,12 @@
   margin-top: 26px;
   padding: 16px 34px;
   border-radius: 999px;
-  background: var(--color-v2-coral);
-  color: var(--color-v2-cream);
+  background: var(--sale-coral);
+  color: #fff;
   font-family: var(--font-fraunces), serif;
   font-size: 16px;
   font-weight: 700;
-  box-shadow: 0 12px 26px rgba(249, 126, 104, 0.32);
+  box-shadow: 0 12px 26px rgba(207, 90, 64, 0.32);
 }
 
 .ctaSecondary {
@@ -180,10 +200,10 @@
   align-items: center;
   gap: 8px;
   padding: 15px 30px;
-  border: 1.5px solid var(--color-v2-coral);
+  border: 1.5px solid var(--sale-coral-text);
   border-radius: 999px;
   background: transparent;
-  color: var(--color-v2-coral);
+  color: var(--sale-coral-text);
   font-family: var(--font-fraunces), serif;
   font-size: 15.5px;
   font-weight: 700;
@@ -196,8 +216,8 @@
   margin-top: 22px;
   padding: 16px 34px;
   border-radius: 999px;
-  background: var(--color-v2-coral);
-  color: var(--color-v2-cream);
+  background: var(--sale-coral);
+  color: #fff;
   font-family: var(--font-fraunces), serif;
   font-size: 16px;
   font-weight: 700;
@@ -207,13 +227,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 8px;
+  margin-top: 28px;
 }
 
 .priceReminder {
   margin-top: 12px;
   font-size: 12.5px;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.55;
 }
 
@@ -244,8 +264,8 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--color-v2-navy);
-  color: var(--color-v2-cream);
+  background: var(--sale-navy);
+  color: var(--sale-cream);
   font-family: var(--font-fraunces), serif;
   font-size: 15px;
   font-weight: 700;
@@ -255,14 +275,14 @@
   font-family: var(--font-fraunces), serif;
   font-size: 16.5px;
   font-weight: 700;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   margin-bottom: 4px;
 }
 
 .stepText {
   font-size: 13.5px;
   line-height: 1.5;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.75;
 }
 
@@ -274,13 +294,13 @@
   margin-top: 40px;
 }
 
-/* ---------- Bloc citation navy ---------- */
+/* ---------- Bloc citation ---------- */
 
 .quoteBlock {
   width: 100vw;
   margin: 44px calc(50% - 50vw) 0;
   padding: 44px 28px;
-  background: var(--color-v2-navy);
+  background: var(--sale-quote-bg);
 }
 
 .quoteText {
@@ -290,7 +310,7 @@
   font-style: italic;
   font-size: clamp(18px, 5vw, 21px);
   line-height: 1.55;
-  color: var(--color-v2-cream);
+  color: var(--sale-navy);
   text-align: center;
 }
 
@@ -332,7 +352,7 @@
 .categoryText {
   font-size: 13px;
   line-height: 1.45;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.75;
 }
 
@@ -361,7 +381,7 @@
   font-family: var(--font-fraunces), serif;
   font-size: 14px;
   font-weight: 700;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.8;
 }
 
@@ -372,7 +392,7 @@
   font-family: var(--font-fraunces), serif;
   font-size: clamp(18px, 5vw, 21px);
   font-weight: 600;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   text-align: center;
   line-height: 1.5;
 }
@@ -397,14 +417,14 @@
   font-family: var(--font-fraunces), serif;
   font-size: 15.5px;
   font-weight: 700;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   margin-bottom: 6px;
 }
 
 .faqAnswer {
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.55;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
   opacity: 0.75;
 }
 
@@ -416,7 +436,7 @@
   align-items: center;
   padding: 48px 28px;
   border-radius: 36px;
-  background: var(--color-v2-navy);
+  background: var(--sale-navy);
   text-align: center;
 }
 
@@ -426,7 +446,7 @@
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--color-v2-coral);
+  color: var(--sale-coral);
 }
 
 .priceBlockPrice {
@@ -434,13 +454,13 @@
   font-family: var(--font-fraunces), serif;
   font-size: clamp(40px, 11vw, 52px);
   font-weight: 700;
-  color: var(--color-v2-cream);
+  color: var(--sale-cream);
 }
 
 .priceBlockSubtext {
   margin-top: 8px;
   font-size: 13px;
-  color: var(--color-v2-cream);
+  color: var(--sale-cream);
   opacity: 0.7;
 }
 
@@ -495,7 +515,7 @@
   font-style: italic;
   font-size: 16px;
   line-height: 1.5;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
 }
 
 .footerSignature {
@@ -503,7 +523,7 @@
   font-family: var(--font-fraunces), serif;
   font-style: italic;
   font-size: 13px;
-  color: var(--color-v2-coral);
+  color: var(--sale-coral-text);
 }
 
 /* ---------- Barre sticky mobile ---------- */
@@ -520,27 +540,31 @@
   gap: 16px;
   padding: 14px 20px;
   padding-bottom: max(14px, env(safe-area-inset-bottom));
-  background: rgba(253, 248, 243, 0.85);
+  background: rgba(255, 249, 242, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 -8px 24px rgba(22, 38, 74, 0.1);
 }
 
 .stickyPrice {
+  flex: 1;
+  min-width: 0;
+  line-height: 1.25;
   font-family: var(--font-fraunces), serif;
-  font-size: 17px;
+  font-size: 13px;
   font-weight: 700;
-  color: var(--color-v2-navy);
+  color: var(--sale-navy);
 }
 
 .stickyButton {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   gap: 6px;
   padding: 11px 22px;
   border-radius: 999px;
-  background: var(--color-v2-coral);
-  color: var(--color-v2-cream);
+  background: var(--sale-coral);
+  color: #fff;
   font-family: var(--font-fraunces), serif;
   font-size: 14.5px;
   font-weight: 700;

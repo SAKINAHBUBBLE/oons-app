@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Nunito, Caveat, Fredoka, Fraunces } from "next/font/google";
+import { Nunito, Caveat, Fredoka, Lora } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/layout/Header";
+import { AppLaunchSplash } from "@/components/splash/AppLaunchSplash";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -22,10 +23,13 @@ const fredoka = Fredoka({
   weight: ["600", "700"],
 });
 
-const fraunces = Fraunces({
+// Nom de variable CSS conservé (--font-fraunces) pour éviter de renommer
+// toutes les feuilles de style qui la référencent : Fraunces a été remplacé
+// par Lora (ascendantes/descendantes moins "tordues" : f, j...).
+const lora = Lora({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["600"],
+  weight: "variable",
   style: ["normal", "italic"],
 });
 
@@ -57,9 +61,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="fr"
-      className={`${nunito.variable} ${caveat.variable} ${fredoka.variable} ${fraunces.variable}`}
+      className={`${nunito.variable} ${caveat.variable} ${fredoka.variable} ${lora.variable}`}
     >
+      <head>
+        <link rel="preload" as="image" href="/brand/oons-logo-primary.svg" type="image/svg+xml" />
+      </head>
       <body>
+        <AppLaunchSplash />
         <Header />
         {children}
         <Analytics />
