@@ -271,6 +271,7 @@ export function VenteEntreNousContent() {
         </p>
 
         <div className={styles.calloutBox}>
+          <span className={styles.calloutRule} aria-hidden="true" />
           <p className={styles.calloutText}>
             Des conversations qui rapprochent. Des instants que l&apos;on garde.
           </p>
@@ -283,6 +284,7 @@ export function VenteEntreNousContent() {
         <h2 className={styles.sectionTitle}>Oons invite. Il n&apos;impose jamais.</h2>
 
         <div className={styles.calloutBox}>
+          <span className={styles.calloutRule} aria-hidden="true" />
           <p className={styles.calloutText}>
             Vous choisissez ce que vous partagez. Vous choisissez jusqu&apos;où vous allez.
           </p>
