@@ -1,19 +1,51 @@
 .wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 14px;
   width: 100%;
   padding: 18px 12px 14px;
+  /* Fond crème + accents pastel flous, pour rappeler le fond réel de l'écran
+     de la roue dans l'app plutôt qu'un simple blanc. */
+  background: var(--color-v2-cream);
+}
+
+.wrapper::before,
+.wrapper::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.wrapper::before {
+  top: -36px;
+  left: -28px;
+  background: var(--color-v2-blob-pink);
+}
+
+.wrapper::after {
+  bottom: -30px;
+  right: -28px;
+  background: var(--color-v2-blob-lavender);
 }
 
 .wheelContainer {
   position: relative;
+  z-index: 1;
   width: 148px;
   height: 148px;
 }
 
 .questionCard {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
