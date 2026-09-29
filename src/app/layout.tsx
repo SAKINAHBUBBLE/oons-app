@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Nunito, Caveat, Fredoka, Fraunces } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/layout/Header";
+import { AppLaunchSplash } from "@/components/splash/AppLaunchSplash";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -59,7 +60,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${nunito.variable} ${caveat.variable} ${fredoka.variable} ${fraunces.variable}`}
     >
+      <head>
+        <link rel="preload" as="image" href="/brand/oons-logo-primary.svg" type="image/svg+xml" />
+      </head>
       <body>
+        <AppLaunchSplash />
         <Header />
         {children}
         <Analytics />

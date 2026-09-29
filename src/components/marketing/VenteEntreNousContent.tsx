@@ -4,6 +4,7 @@ import Link from "next/link";
 import { track } from "@vercel/analytics";
 import { CategoryIcon } from "@/components/entre-nous/CategoryIcon";
 import { PhoneMockup } from "@/components/marketing/PhoneMockup";
+import { HeroWheelPreview } from "@/components/marketing/HeroWheelPreview";
 import { ENTRE_NOUS_CATEGORIES } from "@/data/entre-nous-questions";
 import styles from "./VenteEntreNousContent.module.css";
 
@@ -103,6 +104,12 @@ export function VenteEntreNousContent() {
             questions et défis.
           </p>
 
+          <div className={styles.heroPhone}>
+            <PhoneMockup className={styles.heroPhoneFrame}>
+              <HeroWheelPreview />
+            </PhoneMockup>
+          </div>
+
           <Link
             href="/connexion?mode=inscription"
             className={styles.ctaPrimary}
@@ -134,6 +141,16 @@ export function VenteEntreNousContent() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className={styles.ctaBlock}>
+          <Link
+            href="/connexion?mode=inscription"
+            className={styles.ctaPrimary}
+            onClick={() => trackCtaClick("apres-etapes")}
+          >
+            Découvrir Entre Nous →
+          </Link>
         </div>
 
         <div className={styles.wheelShowcase}>
@@ -271,7 +288,7 @@ export function VenteEntreNousContent() {
 
       {/* ---------- BARRE STICKY MOBILE ---------- */}
       <div className={styles.stickyBar}>
-        <span className={styles.stickyPrice}>19,90 €</span>
+        <span className={styles.stickyPrice}>Entre Nous · 19,90 € · achat unique</span>
         <Link
           href="/connexion?mode=inscription"
           className={styles.stickyButton}
