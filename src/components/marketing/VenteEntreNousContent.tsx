@@ -55,7 +55,10 @@ const STEPS = [
 // conservée ici sur décision explicite de l'auteure du brief (voir résumé
 // des écarts envoyé après cette implémentation).
 const REAL_SCREEN_QUESTIONS: { categoryId: EntreNousCategoryId; text: string }[] = [
-  { categoryId: "doux", text: "Quel souvenir de nous deux te fait encore sourire rien que d'y penser ?" },
+  {
+    categoryId: "profond",
+    text: "Quelle est la chose dont tu as le plus besoin en ce moment et que tu n'oses pas demander ?",
+  },
   {
     categoryId: "spirituel",
     text: "Y a-t-il un verset, une invocation ou un rappel qui t'a portée dans une période difficile ?",
@@ -188,23 +191,6 @@ export function VenteEntreNousContent() {
           </Link>
         </div>
       </section>
-
-      {/* ---------- BLOC CITATION ---------- */}
-      <div className={styles.quoteBlock}>
-        <p className={styles.quoteText}>
-          Une seule question peut ouvrir autant de conversations qu&apos;il y a de personnes
-          autour de vous.
-        </p>
-        <div className={styles.ctaBlock}>
-          <Link
-            href="/connexion?mode=inscription"
-            className={styles.ctaPrimaryOnNavy}
-            onClick={() => trackCtaClick("apres-citation")}
-          >
-            Commencer avec Entre Nous →
-          </Link>
-        </div>
-      </div>
 
       {/* ---------- 5 UNIVERS ---------- */}
       <section className={styles.section}>
