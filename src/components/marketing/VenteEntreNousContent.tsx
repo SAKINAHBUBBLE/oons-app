@@ -5,7 +5,6 @@ import { track } from "@vercel/analytics";
 import { CategoryIcon } from "@/components/entre-nous/CategoryIcon";
 import { PhoneMockup } from "@/components/marketing/PhoneMockup";
 import { HeroWheelPreview } from "@/components/marketing/HeroWheelPreview";
-import { WheelScreenPreview } from "@/components/marketing/WheelScreenPreview";
 import { QuestionScreenPreview } from "@/components/marketing/QuestionScreenPreview";
 import { PreviewCarousel } from "@/components/marketing/PreviewCarousel";
 import { ENTRE_NOUS_CATEGORIES, type EntreNousCategoryId } from "@/data/entre-nous-questions";
@@ -247,21 +246,14 @@ export function VenteEntreNousContent() {
         <h2 className={styles.sectionTitle}>Un aperçu des questions</h2>
 
         <PreviewCarousel
-          slides={[
-            {
-              id: "wheel",
-              ariaLabel: "Écran de la roue Oons, sur le point de s'arrêter sur la catégorie Douceur",
-              content: <WheelScreenPreview featuredCategory="doux" />,
-            },
-            ...REAL_SCREEN_QUESTIONS.map((preview) => {
-              const category = CATEGORY_BY_ID[preview.categoryId];
-              return {
-                id: preview.categoryId,
-                ariaLabel: `Écran de question Oons, catégorie ${category.label} : ${preview.text}`,
-                content: <QuestionScreenPreview categoryId={preview.categoryId} questionText={preview.text} />,
-              };
-            }),
-          ]}
+          slides={REAL_SCREEN_QUESTIONS.map((preview) => {
+            const category = CATEGORY_BY_ID[preview.categoryId];
+            return {
+              id: preview.categoryId,
+              ariaLabel: `Écran de question Oons, catégorie ${category.label} : ${preview.text}`,
+              content: <QuestionScreenPreview categoryId={preview.categoryId} questionText={preview.text} />,
+            };
+          })}
         />
 
         <div className={styles.ctaBlock}>
