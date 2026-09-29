@@ -97,6 +97,14 @@
   --color-v2-card-blue-text: #3170c4;
   --color-v2-card-yellow-text: #c9852e;
 
+  /* Écran Packs */
+  --color-v2-pack-rose-bg: #fbe1de;
+  --color-v2-pack-green-bg: #e2f0e4;
+  --color-v2-pack-green-text: #3f8a5c;
+  --color-v2-pack-violet-bg: #e7defb;
+  --color-v2-pack-yellow-bg: #fbf0c8;
+  --color-v2-pack-blue-bg: #e4f0fc;
+
   --background: var(--color-cream);
   --foreground: var(--color-navy);
 }

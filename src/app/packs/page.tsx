@@ -1,11 +1,10 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { OonsLogo } from "@/components/brand/OonsLogo";
-import { SplashBackdrop } from "@/components/splash/SplashBackdrop";
-import { PackCard } from "@/components/packs/PackCard";
+import { SplashBackdropV2 } from "@/components/splash/SplashBackdropV2";
+import { PackCardV2 } from "@/components/packs/PackCardV2";
 import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
-import { PACKS } from "@/data/packs";
+import { PACKS_V2 } from "@/data/packs-v2";
 import styles from "./page.module.css";
 
 const TOAST_DURATION_MS = 2200;
@@ -22,10 +21,11 @@ export default function PacksPage() {
 
   return (
     <main className={styles.page}>
-      <SplashBackdrop />
+      <SplashBackdropV2 />
       <div className={styles.content}>
         <div className={styles.topBar}>
-          <OonsLogo size={56} showSlogan={false} />
+          {/* eslint-disable-next-line @next/next/no-img-element -- asset vectoriel maître unique */}
+          <img className={styles.logo} src="/brand/oons-logo-primary.svg" alt="Oons" />
           <button
             type="button"
             className={styles.settingsButton}
@@ -40,8 +40,8 @@ export default function PacksPage() {
         <p className={styles.subtitle}>Des univers pour se rapprocher.</p>
 
         <div className={styles.grid}>
-          {PACKS.map((pack) => (
-            <PackCard key={pack.id} pack={pack} onLocked={handleLocked} />
+          {PACKS_V2.map((pack) => (
+            <PackCardV2 key={pack.id} pack={pack} onLocked={handleLocked} />
           ))}
         </div>
       </div>
