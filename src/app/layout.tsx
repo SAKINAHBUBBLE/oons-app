@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Nunito, Caveat, Fredoka, Fraunces } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/layout/Header";
 import "./globals.css";
 
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body>
         <Header />
         {children}
+        <Analytics />
       </body>
     </html>
   );

@@ -16,6 +16,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
+import { track } from "@vercel/analytics";
 import { getFirebaseAuth } from "@/lib/firebase";
 import { useAuthUser } from "@/lib/useAuthUser";
 import { markOnboardingNeeded } from "@/lib/onboarding";
@@ -194,6 +195,7 @@ export default function ConnexionPage() {
         // Le poème + les règles du jeu ne sont plus des pages séparées : ils
         // s'afficheront en overlay au tout premier "Lancer la roue".
         markOnboardingNeeded();
+        track("signup", { method: "email" });
         router.replace("/packs");
       } else {
         await signInWithEmailAndPassword(auth, email, password);
@@ -217,6 +219,7 @@ export default function ConnexionPage() {
       const isNewUser = getAdditionalUserInfo(credential)?.isNewUser ?? false;
       if (isNewUser) {
         markOnboardingNeeded();
+        track("signup", { method: "google" });
       }
       router.replace("/packs");
     } catch (err) {
