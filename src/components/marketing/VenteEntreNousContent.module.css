@@ -351,17 +351,26 @@
 /* ---------- Encadrés (citations mises en avant) ---------- */
 
 .calloutBox {
-  margin-top: 26px;
-  padding: 24px 26px;
-  border-radius: 24px;
-  border: 1.5px solid var(--sale-coral);
-  background: var(--sale-quote-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.calloutRule {
+  width: 32px;
+  height: 2px;
+  margin-bottom: 18px;
+  background: var(--sale-coral);
+  border-radius: 999px;
 }
 
 .calloutText {
+  max-width: 300px;
   font-family: var(--font-fraunces), serif;
   font-style: italic;
-  font-size: clamp(17px, 4.5vw, 19px);
+  font-weight: 600;
+  font-size: clamp(19px, 5.5vw, 23px);
   line-height: 1.5;
   color: var(--sale-navy);
   text-align: center;
