@@ -22,6 +22,32 @@ const SPIN_DURATION_MS = 3500;
 // jamais du bord voisin (et donc du pointeur).
 const JITTER_RANGE = SEGMENT_ANGLE * 0.3;
 
+// Mémorise les dernières catégories tirées (au-delà d'une seule session, via
+// localStorage) pour éviter de retomber trop souvent sur la même catégorie :
+// un vrai tirage uniforme donne l'impression d'être "pas équilibré".
+const RECENT_HISTORY_KEY = "oons-wheel-recent-categories";
+const RECENT_HISTORY_SIZE = 2;
+
+function getRecentCategories(): EntreNousCategoryId[] {
+  try {
+    const raw = window.localStorage.getItem(RECENT_HISTORY_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? (parsed as EntreNousCategoryId[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function pushRecentCategory(categoryId: EntreNousCategoryId) {
+  try {
+    const history = [categoryId, ...getRecentCategories()].slice(0, RECENT_HISTORY_SIZE);
+    window.localStorage.setItem(RECENT_HISTORY_KEY, JSON.stringify(history));
+  } catch {
+    // localStorage indisponible : l'alternance sera juste moins lissée, sans impact critique.
+  }
+}
+
 const WHEEL_BACKGROUND = `conic-gradient(${WHEEL_SEGMENTS.map(
   (categoryId, index) =>
     `${CATEGORY_BY_ID[categoryId].wheelColor} ${index * SEGMENT_ANGLE}deg ${(index + 1) * SEGMENT_ANGLE}deg`,
@@ -60,8 +86,14 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
 
     // Le même index pilote à la fois la rotation ET la catégorie renvoyée :
     // le segment sur lequel la roue s'arrête visuellement détermine toujours,
-    // par construction, la catégorie de la question tirée.
-    const targetIndex = Math.floor(Math.random() * WHEEL_SEGMENTS.length);
+    // par construction, la catégorie de la question tirée. On exclut les
+    // catégories tirées récemment pour mieux alterner (voir RECENT_HISTORY_*).
+    const recentCategories = getRecentCategories();
+    const eligibleIndexes = WHEEL_SEGMENTS.map((_, index) => index).filter(
+      (index) => !recentCategories.includes(WHEEL_SEGMENTS[index]),
+    );
+    const pool = eligibleIndexes.length > 0 ? eligibleIndexes : WHEEL_SEGMENTS.map((_, index) => index);
+    const targetIndex = pool[Math.floor(Math.random() * pool.length)];
     const centerAngle = targetIndex * SEGMENT_ANGLE + SEGMENT_ANGLE / 2;
     const jitter = (Math.random() * 2 - 1) * JITTER_RANGE;
     const targetMod = (360 - (centerAngle + jitter) + 360) % 360;
@@ -78,6 +110,7 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
 
     window.setTimeout(() => {
       setSpinning(false);
+      pushRecentCategory(WHEEL_SEGMENTS[targetIndex]);
       onLand(WHEEL_SEGMENTS[targetIndex]);
     }, SPIN_DURATION_MS);
   }
@@ -88,7 +121,23 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
     setSoundEnabled(next);
   }
 
-  useImperativeHandle(ref, () => ({ spin: handleSpin }));
+  useImperativeHandle(ref, () => ({
+    spin: () => {
+      // Déclenché juste après une navigation (retour depuis une question, ou
+      // fin d'onboarding) : si on lance le spin dès le montage, il arrive
+      // parfois que le premier changement de `transform` soit fusionné avec
+      // le tout premier paint (aucune image "de départ" à 0deg n'a encore
+      // été affichée), et la transition CSS ne s'anime alors pas — le son
+      // joue mais la roue saute directement à sa position finale. Un double
+      // requestAnimationFrame garantit qu'au moins un paint a bien eu lieu
+      // avant de modifier la rotation, pour que la transition s'anime à coup sûr.
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          handleSpin();
+        });
+      });
+    },
+  }));
 
   return (
     <div className={styles.wrapper}>

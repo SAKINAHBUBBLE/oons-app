@@ -121,7 +121,7 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
         </div>
 
         <button type="button" className={styles.passButton} onClick={handlePass}>
-          Passer cette question
+          Question suivante
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
             <path
               d="M4 12a8 8 0 0113.66-5.66M20 12a8 8 0 01-13.66 5.66"

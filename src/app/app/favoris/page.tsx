@@ -7,6 +7,7 @@ import { SplashBackdropV2 } from "@/components/splash/SplashBackdropV2";
 import { BottomNav } from "@/components/layout/BottomNav";
 import { CategoryIcon } from "@/components/entre-nous/CategoryIcon";
 import { HeartIcon } from "@/components/icons/HeartIcon";
+import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
 import { ENTRE_NOUS_CATEGORIES, type EntreNousCategoryId } from "@/data/entre-nous-questions";
 import { useFavorites } from "@/lib/favorites";
 import { useAuthUser } from "@/lib/useAuthUser";
@@ -39,8 +40,24 @@ export default function FavorisPage() {
     <main className={styles.page}>
       <SplashBackdropV2 />
       <div className={styles.content}>
-        {/* eslint-disable-next-line @next/next/no-img-element -- asset vectoriel maître unique */}
-        <img className={styles.logo} src="/brand/oons-logo-primary.svg" alt="Oons" />
+        <div className={styles.topBar}>
+          <Link href="/app/profil" className={styles.backButton} aria-label="Retour à mon espace">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
+              <path
+                d="M15 5 8 12l7 7"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Link>
+          {/* eslint-disable-next-line @next/next/no-img-element -- asset vectoriel maître unique */}
+          <img className={styles.logo} src="/brand/oons-logo-primary.svg" alt="Oons" />
+          <Link href="/app/parametres" className={styles.settingsButton} aria-label="Réglages">
+            <SettingsGearIcon />
+          </Link>
+        </div>
         <h1 className={styles.title}>Mes favoris</h1>
         <p className={styles.subtitle}>Vos questions préférées, toujours à portée de main.</p>
 

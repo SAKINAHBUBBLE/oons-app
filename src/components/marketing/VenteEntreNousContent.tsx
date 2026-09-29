@@ -1,8 +1,17 @@
+"use client";
+
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 import { CategoryIcon } from "@/components/entre-nous/CategoryIcon";
 import { PhoneMockup } from "@/components/marketing/PhoneMockup";
 import { ENTRE_NOUS_CATEGORIES } from "@/data/entre-nous-questions";
 import styles from "./VenteEntreNousContent.module.css";
+
+// Étiquette l'emplacement du bouton d'achat cliqué, pour distinguer les CTA
+// dans les statistiques (Vercel Analytics → onglet Events).
+function trackCtaClick(location: string) {
+  track("cta_click", { location });
+}
 
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
   profond: "Pour les conversations qui vont chercher plus loin que la surface.",
@@ -94,7 +103,11 @@ export function VenteEntreNousContent() {
             questions et défis.
           </p>
 
-          <Link href="/connexion?mode=inscription" className={styles.ctaPrimary}>
+          <Link
+            href="/connexion?mode=inscription"
+            className={styles.ctaPrimary}
+            onClick={() => trackCtaClick("hero")}
+          >
             Découvrir Entre Nous →
           </Link>
           <p className={styles.heroSubtext}>
@@ -135,7 +148,11 @@ export function VenteEntreNousContent() {
         </div>
 
         <div className={styles.ctaBlock}>
-          <Link href="/connexion?mode=inscription" className={styles.ctaPrimary}>
+          <Link
+            href="/connexion?mode=inscription"
+            className={styles.ctaPrimary}
+            onClick={() => trackCtaClick("comment-ca-marche")}
+          >
             Découvrir Entre Nous →
           </Link>
           <p className={styles.priceReminder}>19,90 € · achat unique · sans abonnement</p>
@@ -177,7 +194,11 @@ export function VenteEntreNousContent() {
         </div>
 
         <div className={styles.ctaBlock}>
-          <Link href="/connexion?mode=inscription" className={styles.ctaSecondary}>
+          <Link
+            href="/connexion?mode=inscription"
+            className={styles.ctaSecondary}
+            onClick={() => trackCtaClick("univers")}
+          >
             Voir les 5 univers en jeu →
           </Link>
         </div>
@@ -217,7 +238,11 @@ export function VenteEntreNousContent() {
           <p className={styles.priceBlockSubtext}>
             Achat unique · Sans abonnement · Accès à vie instantané
           </p>
-          <Link href="/connexion?mode=inscription" className={styles.ctaPrimaryOnNavy}>
+          <Link
+            href="/connexion?mode=inscription"
+            className={styles.ctaPrimaryOnNavy}
+            onClick={() => trackCtaClick("prix-final")}
+          >
             Commencer maintenant →
           </Link>
         </div>
@@ -247,7 +272,11 @@ export function VenteEntreNousContent() {
       {/* ---------- BARRE STICKY MOBILE ---------- */}
       <div className={styles.stickyBar}>
         <span className={styles.stickyPrice}>19,90 €</span>
-        <Link href="/connexion?mode=inscription" className={styles.stickyButton}>
+        <Link
+          href="/connexion?mode=inscription"
+          className={styles.stickyButton}
+          onClick={() => trackCtaClick("sticky-bar")}
+        >
           Commencer →
         </Link>
       </div>

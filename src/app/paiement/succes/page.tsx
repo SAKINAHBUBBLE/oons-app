@@ -1,7 +1,15 @@
+"use client";
+
+import { useEffect } from "react";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 import styles from "../page.module.css";
 
 export default function PaiementSuccesPage() {
+  useEffect(() => {
+    track("purchase", { pack: "entre-nous" });
+  }, []);
+
   return (
     <main className={styles.page}>
       <h1 className={styles.title}>Paiement réussi</h1>
