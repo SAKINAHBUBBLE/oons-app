@@ -8,34 +8,32 @@ interface CategoryIconProps {
   size?: number;
 }
 
+const HEART_PATH =
+  "M50 88 C8 60 8 24 34 14 C44 10 50 20 50 20 C50 20 56 10 66 14 C92 24 92 60 50 88 Z";
+
+// Profond : deux cœurs superposés, semi-transparents.
 function Profond({ accent, accentStrong }: { accent: string; accentStrong: string }) {
   return (
     <>
-      <circle cx="40" cy="52" r="26" fill={accentStrong} opacity="0.65" />
-      <circle cx="60" cy="52" r="26" fill={accent} opacity="0.65" />
-      <circle cx="50" cy="36" r="16" fill={accentStrong} opacity="0.5" />
+      <path d={HEART_PATH} fill={accent} opacity="0.8" transform="translate(18.9,22.5) scale(0.55)" />
+      <path d={HEART_PATH} fill={accentStrong} opacity="0.85" transform="translate(26.1,22.5) scale(0.55)" />
     </>
   );
 }
 
-function Doux({ accent, accentStrong }: { accent: string; accentStrong: string }) {
+// Douceur : petit fruit rond type abricot avec une feuille.
+function Douceur({ accent, accentStrong }: { accent: string; accentStrong: string }) {
   return (
     <>
-      <path
-        d="M50 24 C68 24 76 40 68 56 C60 72 40 74 32 60 C24 46 32 24 50 24 Z"
-        fill={accent}
-        opacity="0.85"
-      />
-      <path
-        d="M64 32 C72 32 76 40 72 46 C68 52 58 50 56 44 C54 38 58 32 64 32 Z"
-        fill={accentStrong}
-        opacity="0.6"
-      />
-      <circle cx="76" cy="30" r="4" fill={accentStrong} opacity="0.7" />
+      <circle cx="45" cy="55" r="22" fill={accent} opacity="0.9" />
+      <circle cx="62" cy="52" r="20" fill={accentStrong} opacity="0.5" />
+      <path d="M53 30 L53 21" stroke={accentStrong} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M53 24 C53 18 60 15 66 17 C62 22 58 26 55 30 Z" fill={accentStrong} opacity="0.85" />
     </>
   );
 }
 
+// Défi : montagnes géométriques superposées et translucides, petit drapeau.
 function Defi({ accent, accentStrong }: { accent: string; accentStrong: string }) {
   return (
     <>
@@ -48,49 +46,27 @@ function Defi({ accent, accentStrong }: { accent: string; accentStrong: string }
   );
 }
 
-function Spirituel({ accent, accentStrong }: { accent: string; accentStrong: string }) {
-  const leaves = [
-    { rotate: -18, color: accentStrong },
-    { rotate: 0, color: accent },
-    { rotate: 18, color: accentStrong },
-  ];
+// Spirituel : croissant de lune seul, sans étoile (grand cercle + cercle
+// "mordant" de la couleur de fond du segment pour créer le croissant).
+function Spirituel({ accent }: { accent: string; accentStrong: string }) {
   return (
     <>
-      {leaves.map((leaf, index) => (
-        <ellipse
-          key={index}
-          cx="50"
-          cy="46"
-          rx="13"
-          ry="26"
-          fill={leaf.color}
-          opacity="0.7"
-          transform={`rotate(${leaf.rotate} 50 68)`}
-        />
-      ))}
-      <circle cx="72" cy="34" r="3.5" fill={accentStrong} opacity="0.6" />
+      <circle cx="50" cy="50" r="24" fill={accent} opacity="0.92" />
+      <circle cx="61" cy="42" r="19" fill="var(--color-v2-wheel-spirituel-bg)" />
     </>
   );
 }
 
+// Décalé : deux ballons superposés, avec transparence.
 function Decale({ accent, accentStrong }: { accent: string; accentStrong: string }) {
   return (
     <>
-      <path
-        d="M50 22 C68 22 80 33 80 47 C80 61 68 71 50 71 C46 71 42.5 70.5 39.5 69.5 L28 78 L31 64 C24 58.5 20 53.5 20 47 C20 33 32 22 50 22 Z"
-        fill={accent}
-      />
-      <path d="M38 44 C38 41 40.5 39 43 40 C45 41 45 46 42 47 C39.5 47.5 38 46 38 44 Z" fill={accentStrong} />
-      <path d="M58 44 C58 41 60.5 39 63 40 C65 41 65 46 62 47 C59.5 47.5 58 46 58 44 Z" fill={accentStrong} />
-      <path
-        d="M40 54 C44 60 56 60 60 54"
-        fill="none"
-        stroke={accentStrong}
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-      <circle cx="34" cy="52" r="4" fill={accentStrong} opacity="0.35" />
-      <circle cx="66" cy="52" r="4" fill={accentStrong} opacity="0.35" />
+      <path d="M42 66 C40 74 46 80 50 84" fill="none" stroke={accentStrong} strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+      <path d="M60 64 C62 72 56 80 50 84" fill="none" stroke={accent} strokeWidth="2" strokeLinecap="round" opacity="0.6" />
+      <ellipse cx="41" cy="42" rx="17" ry="20" fill={accent} opacity="0.8" transform="rotate(-8 41 42)" />
+      <path d="M41 60 L37 66 L45 66 Z" fill={accent} opacity="0.8" />
+      <ellipse cx="60" cy="40" rx="17" ry="20" fill={accentStrong} opacity="0.85" transform="rotate(8 60 40)" />
+      <path d="M60 58 L56 64 L64 64 Z" fill={accentStrong} opacity="0.85" />
     </>
   );
 }
@@ -100,7 +76,7 @@ const ICONS: Record<
   (props: { accent: string; accentStrong: string }) => ReactNode
 > = {
   profond: Profond,
-  doux: Doux,
+  doux: Douceur,
   defi: Defi,
   decale: Decale,
   spirituel: Spirituel,

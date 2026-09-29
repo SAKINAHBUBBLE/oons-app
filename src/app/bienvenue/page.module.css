@@ -6,7 +6,26 @@
   justify-content: center;
   padding: clamp(24px, 6vh, 56px) 24px;
   overflow: hidden;
-  background: var(--color-cream-warm);
+  background: var(--color-v2-cream);
+}
+
+.closeButton {
+  position: absolute;
+  top: clamp(16px, 4vh, 28px);
+  right: clamp(16px, 4vw, 28px);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: var(--color-v2-cream);
+  color: var(--color-v2-navy);
+  opacity: 0.85;
+  box-shadow: 0 4px 10px rgba(22, 38, 74, 0.1);
+  cursor: pointer;
 }
 
 .content {
@@ -15,41 +34,74 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(28px, 6vh, 44px);
+  gap: clamp(26px, 5vh, 38px);
   max-width: 420px;
   text-align: center;
+}
+
+.logo {
+  width: clamp(140px, 42vw, 190px);
+  height: auto;
 }
 
 .poem {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  align-items: center;
 }
 
-.poemLine {
+.stanzaGroup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.separator {
+  width: 28px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-v2-lavender-text);
+  opacity: 0.5;
+  margin: 16px 0;
+}
+
+.stanza {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.line {
   font-family: var(--font-fraunces), serif;
   font-size: clamp(17px, 4.6vw, 20px);
   font-weight: 500;
   line-height: 1.5;
-  color: var(--color-petrol);
+  color: var(--color-v2-navy);
 }
 
-.poemLine:last-child {
-  margin-top: 10px;
-  font-weight: 600;
-  font-size: clamp(19px, 5.2vw, 23px);
-  color: var(--color-raspberry);
+.title {
+  font-family: var(--font-fraunces), serif;
+  font-size: clamp(24px, 6.4vw, 30px);
+  font-weight: 700;
+  color: var(--color-v2-navy);
 }
 
-.continueButton {
-  padding: 14px 40px;
+.titleAccent {
+  color: var(--color-v2-coral);
+}
+
+.enterButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 34px;
   border: none;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--color-raspberry), var(--color-pack-cta-end));
-  color: #fff;
+  background: var(--color-v2-navy);
+  color: var(--color-v2-cream);
   font-family: var(--font-fraunces), serif;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(217, 61, 91, 0.28);
+  box-shadow: 0 10px 22px rgba(22, 38, 74, 0.25);
 }

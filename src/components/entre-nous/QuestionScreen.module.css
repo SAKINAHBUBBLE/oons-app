@@ -6,7 +6,7 @@
   align-items: center;
   padding: clamp(18px, 4vh, 32px) 20px 12px;
   overflow: hidden;
-  background: var(--color-cream-warm);
+  background: var(--color-v2-cream);
 }
 
 .content {
@@ -29,6 +29,11 @@
   margin-bottom: 4px;
 }
 
+.logo {
+  width: 72px;
+  height: auto;
+}
+
 .backButton,
 .settingsButton {
   position: absolute;
@@ -41,7 +46,7 @@
   height: 36px;
   border: none;
   background: transparent;
-  color: var(--color-petrol);
+  color: var(--color-v2-navy);
   opacity: 0.8;
   cursor: pointer;
 }
@@ -56,20 +61,30 @@
 }
 
 .packLabel {
-  margin-top: 4px;
-  margin-bottom: 8px;
+  margin-top: 2px;
+  margin-bottom: 4px;
   font-family: var(--font-fraunces), serif;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
-  color: var(--color-raspberry);
+  color: var(--color-v2-coral);
   text-align: center;
 }
 
+.heroAura {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(150px, 42vw, 190px);
+  height: clamp(150px, 42vw, 190px);
+  margin-top: 6px;
+  border-radius: 50%;
+}
+
 .title {
-  margin-top: 10px;
+  margin-top: 14px;
   font-family: var(--font-fraunces), serif;
   font-size: clamp(24px, 6.5vw, 30px);
-  font-weight: 600;
+  font-weight: 700;
   text-align: center;
 }
 
@@ -81,16 +96,17 @@
   letter-spacing: 0.08em;
   text-align: center;
   line-height: 1.5;
+  opacity: 0.85;
 }
 
 .card {
   position: relative;
   width: 100%;
   max-width: 340px;
-  background: var(--color-card-cream);
+  background: var(--color-v2-card-bg);
   border-radius: 32px;
   padding: 32px 24px 28px;
-  box-shadow: 0 16px 36px rgba(23, 59, 59, 0.08);
+  box-shadow: 0 16px 36px rgba(22, 38, 74, 0.08);
   text-align: center;
 }
 
@@ -99,14 +115,21 @@
   font-size: 20px;
   font-weight: 600;
   line-height: 1.5;
-  color: var(--color-title-blue);
+  color: var(--color-v2-navy);
 }
 
-.ornament {
-  display: block;
-  margin-top: 14px;
-  font-size: 16px;
-  opacity: 0.8;
+.favoriteButton {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 .passButton {
@@ -116,9 +139,9 @@
   margin-top: 20px;
   padding: 12px 24px;
   border-radius: 999px;
-  border: 1.5px solid var(--color-raspberry);
+  border: 1.5px solid var(--color-v2-coral);
   background: transparent;
-  color: var(--color-raspberry);
+  color: var(--color-v2-coral);
   font-family: var(--font-fraunces), serif;
   font-size: 15px;
   font-weight: 600;

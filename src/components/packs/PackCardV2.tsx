@@ -1,29 +1,29 @@
 import Link from "next/link";
-import type { Pack } from "@/data/packs";
-import { PackIcon } from "./PackIcon";
-import styles from "./PackCard.module.css";
+import type { PackV2 } from "@/data/packs-v2";
+import { PackIconV2 } from "./PackIconV2";
+import styles from "./PackCardV2.module.css";
 
-interface PackCardProps {
-  pack: Pack;
+interface PackCardV2Props {
+  pack: PackV2;
   onLocked: () => void;
 }
 
-function CardContent({ pack }: { pack: Pack }) {
+function CardContent({ pack }: { pack: PackV2 }) {
   const locked = pack.status === "coming-soon";
   return (
     <>
-      <PackIcon
+      <PackIconV2
         kind={pack.icon}
         accent={pack.colors.iconAccent}
         accentStrong={pack.colors.iconAccentStrong}
-        halo={pack.colors.halo}
       />
-      {locked && <span className={styles.badge}>Bientôt disponible</span>}
       <span className={styles.name} style={{ color: pack.colors.title }}>
         {pack.name}
       </span>
       <span className={styles.subtitle}>{pack.subtitle}</span>
-      {!locked && (
+      {locked ? (
+        <span className={styles.badge}>Bientôt disponible</span>
+      ) : (
         <span className={styles.cta}>
           Commencer <span aria-hidden="true">→</span>
         </span>
@@ -32,11 +32,8 @@ function CardContent({ pack }: { pack: Pack }) {
   );
 }
 
-export function PackCard({ pack, onLocked }: PackCardProps) {
-  const style = {
-    background: pack.colors.cardBg,
-    borderColor: pack.colors.cardBorder ?? "transparent",
-  };
+export function PackCardV2({ pack, onLocked }: PackCardV2Props) {
+  const style = { background: pack.colors.cardBg };
 
   if (pack.status === "coming-soon") {
     return (

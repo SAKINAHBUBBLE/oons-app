@@ -149,7 +149,7 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
                     kind={category.id}
                     accent={category.iconAccent}
                     accentStrong={category.iconAccentStrong}
-                    size={30}
+                    size={38}
                   />
                   <span className={styles.segmentLabel} style={{ color: category.textColor }}>
                     {category.label}
@@ -160,12 +160,8 @@ export const Wheel = forwardRef<WheelHandle, WheelProps>(function Wheel(
           })}
         </div>
         <div className={styles.hub}>
-          <svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true">
-            <path
-              d="M50 88 C8 60 8 24 34 14 C44 10 50 20 50 20 C50 20 56 10 66 14 C92 24 92 60 50 88 Z"
-              fill="var(--color-raspberry)"
-            />
-          </svg>
+          {/* eslint-disable-next-line @next/next/no-img-element -- asset recadré depuis l'image de référence, pas d'optimisation Next nécessaire pour un petit logo statique */}
+          <img className={styles.hubLogo} src="/brand/oons-logo-primary.svg" alt="Oons" />
         </div>
       </div>
       <button

@@ -3,16 +3,17 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { OonsLogo } from "@/components/brand/OonsLogo";
+import { SplashBackdropV2 } from "@/components/splash/SplashBackdropV2";
 import { SettingsGearIcon } from "@/components/icons/SettingsGearIcon";
 import { BottomNav } from "@/components/layout/BottomNav";
-import { QuestionBackdrop } from "@/components/entre-nous/QuestionBackdrop";
-import { QuestionIllustration } from "@/components/entre-nous/QuestionIllustration";
+import { CategoryIcon } from "@/components/entre-nous/CategoryIcon";
 import { QuestionTimer } from "@/components/entre-nous/QuestionTimer";
+import { HeartIcon } from "@/components/icons/HeartIcon";
 import { QUESTION_SCREENS } from "@/data/question-screens";
 import type { EntreNousCategoryId } from "@/data/entre-nous-questions";
 import { pickRandomQuestion, type NormalizedQuestion } from "@/lib/roulette";
 import { useAuthUser } from "@/lib/useAuthUser";
+import { useFavorites } from "@/lib/favorites";
 import styles from "./QuestionScreen.module.css";
 
 interface QuestionScreenProps {
@@ -23,6 +24,7 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
   const router = useRouter();
   const user = useAuthUser();
   const config = QUESTION_SCREENS[categoryId];
+  const { isFavorite, toggleFavorite } = useFavorites();
   // Tirée uniquement côté client (Math.random + localStorage) : impossible à
   // calculer côté serveur sans provoquer un écart d'hydratation, donc on
   // rend `null` au premier passage puis on tire la question après le montage.
@@ -58,11 +60,11 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
 
   return (
     <main className={styles.page}>
-      <QuestionBackdrop palette={config.palette} sparse={config.sparse} />
+      <SplashBackdropV2 />
       <div className={styles.content}>
         <div className={styles.topBar}>
           <Link href="/app" className={styles.backButton} aria-label="Retour à la roue">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" aria-hidden="true">
               <path
                 d="M15 5 8 12l7 7"
                 stroke="currentColor"
@@ -72,7 +74,8 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
               />
             </svg>
           </Link>
-          <OonsLogo size={56} showSlogan={false} />
+          {/* eslint-disable-next-line @next/next/no-img-element -- asset vectoriel maître unique */}
+          <img className={styles.logo} src="/brand/oons-logo-primary.svg" alt="Oons" />
           <button type="button" className={styles.settingsButton} aria-label="Réglages">
             <SettingsGearIcon />
           </button>
@@ -80,22 +83,38 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
 
         <p className={styles.packLabel}>Entre Nous</p>
 
-        <QuestionIllustration kind={config.illustration} size={150} />
+        <div className={styles.heroAura} style={{ background: config.auraBg }}>
+          <CategoryIcon
+            kind={categoryId}
+            accent={config.iconAccent}
+            accentStrong={config.iconAccentStrong}
+            size={110}
+          />
+        </div>
 
-        <h1 className={styles.title} style={{ color: config.titleColor }}>
+        <h1 className={styles.title} style={{ color: config.color }}>
           {config.title}
         </h1>
-        <p className={styles.subtitle} style={{ color: config.subtitleColor }}>
-          {config.subtitleLines[0]}
-          <br />
-          {config.subtitleLines[1]}
+        <p className={styles.subtitle} style={{ color: config.color }}>
+          {config.baselineLines.map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < config.baselineLines.length - 1 && <br />}
+            </span>
+          ))}
         </p>
 
         <div className={styles.card}>
+          <button
+            type="button"
+            className={styles.favoriteButton}
+            onClick={() => toggleFavorite(categoryId, question.text)}
+            aria-label={isFavorite(categoryId, question.text) ? "Retirer des favoris" : "Ajouter aux favoris"}
+            aria-pressed={isFavorite(categoryId, question.text)}
+          >
+            <HeartIcon filled={isFavorite(categoryId, question.text)} />
+          </button>
           <p className={styles.question}>{question.text}</p>
-          <span className={styles.ornament} style={{ color: config.palette.accent[0] }} aria-hidden="true">
-            ✦
-          </span>
           {question.hasTimerSupport && (
             <QuestionTimer key={question.text} seconds={question.defaultTimerSeconds ?? 45} />
           )}
@@ -106,13 +125,13 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" aria-hidden="true">
             <path
               d="M4 12a8 8 0 0113.66-5.66M20 12a8 8 0 01-13.66 5.66"
-              stroke="var(--color-raspberry)"
+              stroke="var(--color-v2-coral)"
               strokeWidth="2"
               strokeLinecap="round"
             />
             <path
               d="M17 4v3.5h-3.5M7 20v-3.5h3.5"
-              stroke="var(--color-raspberry)"
+              stroke="var(--color-v2-coral)"
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -121,7 +140,7 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
         </button>
       </div>
 
-      <BottomNav />
+      <BottomNav variant="compact" />
     </main>
   );
 }
