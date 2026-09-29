@@ -90,6 +90,7 @@
   left: 50%;
   width: 30%;
   height: 30%;
+  padding: 0;
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background: var(--color-v2-cream);
@@ -100,6 +101,11 @@
   justify-content: center;
   z-index: 1;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.hub:disabled {
+  cursor: not-allowed;
 }
 
 .hubLogo {
