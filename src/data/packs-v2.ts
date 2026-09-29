@@ -27,7 +27,7 @@ export const PACKS_V2: PackV2[] = [
     name: "Entre Nous",
     subtitle: "Des conversations qui font du bien.",
     status: "active",
-    href: "/connexion",
+    href: "/vente/entre-nous",
     icon: "entre-nous",
     colors: {
       cardBg: "var(--color-v2-pack-rose-bg)",
