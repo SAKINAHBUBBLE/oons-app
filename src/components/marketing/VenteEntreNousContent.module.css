@@ -100,7 +100,7 @@
 
 .topBarLogo {
   flex-shrink: 0;
-  width: clamp(120px, 34vw, 150px);
+  width: clamp(140px, 42vw, 190px);
   height: auto;
 }
 

@@ -72,8 +72,8 @@ export function HeroWheelPreview() {
         </div>
       </div>
 
-      <div className={styles.questionCard}>
-        <span className={styles.badge} style={{ background: featured.wheelColor, color: featured.textColor }}>
+      <div className={styles.questionCard} style={{ background: featured.wheelColor }}>
+        <span className={styles.badge} style={{ color: featured.textColor }}>
           {featured.label}
         </span>
         <p className={styles.questionText}>{FEATURED_QUESTION}</p>
