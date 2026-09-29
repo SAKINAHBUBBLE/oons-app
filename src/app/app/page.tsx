@@ -67,9 +67,9 @@ export default function AppHome() {
           </Link>
           {/* eslint-disable-next-line @next/next/no-img-element -- asset recadré depuis l'image de référence, pas d'optimisation Next nécessaire pour un petit logo statique */}
           <img className={styles.headerLogo} src="/brand/oons-logo-primary.svg" alt="Oons" />
-          <button type="button" className={styles.settingsButton} aria-label="Réglages">
+          <Link href="/app/parametres" className={styles.settingsButton} aria-label="Réglages">
             <SettingsGearIcon />
-          </button>
+          </Link>
         </div>
 
         <h1 className={styles.title}>
