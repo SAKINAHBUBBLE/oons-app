@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 
-const AMOUNT_CENTS = 1490;
+const AMOUNT_CENTS = 1990;
 const CURRENCY = "eur";
 const PRODUCT_NAME = "Entre Nous";
 
