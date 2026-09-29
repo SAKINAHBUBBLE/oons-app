@@ -246,32 +246,24 @@
 .steps {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-top: 32px;
+  gap: 28px;
+  margin-top: 36px;
 }
 
 .stepCard {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  padding: 18px;
-  border-radius: 24px;
-  background: var(--color-v2-card-bg);
-  box-shadow: 0 8px 20px rgba(22, 38, 74, 0.06);
+  gap: 18px;
 }
 
 .stepNumber {
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--sale-navy);
-  color: var(--sale-cream);
+  line-height: 1.2;
+  font-style: italic;
+  color: var(--sale-coral);
   font-family: var(--font-fraunces), serif;
-  font-size: 15px;
+  font-size: 28px;
   font-weight: 700;
 }
 
@@ -295,17 +287,15 @@
 .categoryList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  border-bottom: 1px solid rgba(30, 42, 73, 0.1);
 }
 
 .categoryCard {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px;
-  border-radius: 22px;
-  background: var(--color-v2-card-bg);
-  box-shadow: 0 6px 16px rgba(22, 38, 74, 0.05);
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(30, 42, 73, 0.1);
 }
 
 .categoryIconCircle {
@@ -313,8 +303,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 54px;
-  height: 54px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
 }
 
