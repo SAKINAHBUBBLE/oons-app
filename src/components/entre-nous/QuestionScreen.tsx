@@ -76,9 +76,9 @@ export function QuestionScreen({ categoryId }: QuestionScreenProps) {
           </Link>
           {/* eslint-disable-next-line @next/next/no-img-element -- asset vectoriel maître unique */}
           <img className={styles.logo} src="/brand/oons-logo-primary.svg" alt="Oons" />
-          <button type="button" className={styles.settingsButton} aria-label="Réglages">
+          <Link href="/app/parametres" className={styles.settingsButton} aria-label="Réglages">
             <SettingsGearIcon />
-          </button>
+          </Link>
         </div>
 
         <p className={styles.packLabel}>Entre Nous</p>
