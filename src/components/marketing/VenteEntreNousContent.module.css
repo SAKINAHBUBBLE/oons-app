@@ -100,7 +100,7 @@
 
 .topBarLogo {
   flex-shrink: 0;
-  width: clamp(120px, 34vw, 150px);
+  width: clamp(140px, 42vw, 190px);
   height: auto;
 }
 
@@ -352,38 +352,20 @@
   opacity: 0.75;
 }
 
-/* ---------- Aperçu de questions ---------- */
+/* ---------- Aperçu de questions (écrans réels dans des cadres) ---------- */
 
-.previewGrid {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 28px;
+.previewSection {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  padding: clamp(48px, 9vh, 72px) 22px 0;
 }
 
-.previewCard {
-  padding: 18px;
-  border-radius: 20px;
-  background: var(--color-v2-card-bg);
-  box-shadow: 0 6px 16px rgba(22, 38, 74, 0.05);
-}
-
-.previewBadge {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  margin-bottom: 10px;
-}
-
-.previewText {
-  font-family: var(--font-fraunces), serif;
-  font-size: 15.5px;
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--sale-navy);
+@media (min-width: 820px) {
+  .previewSection {
+    max-width: 1080px;
+  }
 }
 
 /* ---------- Encadrés (citations mises en avant) ---------- */

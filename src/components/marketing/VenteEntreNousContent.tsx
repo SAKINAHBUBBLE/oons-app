@@ -5,6 +5,9 @@ import { track } from "@vercel/analytics";
 import { CategoryIcon } from "@/components/entre-nous/CategoryIcon";
 import { PhoneMockup } from "@/components/marketing/PhoneMockup";
 import { HeroWheelPreview } from "@/components/marketing/HeroWheelPreview";
+import { WheelScreenPreview } from "@/components/marketing/WheelScreenPreview";
+import { QuestionScreenPreview } from "@/components/marketing/QuestionScreenPreview";
+import { PreviewCarousel } from "@/components/marketing/PreviewCarousel";
 import { ENTRE_NOUS_CATEGORIES, type EntreNousCategoryId } from "@/data/entre-nous-questions";
 import styles from "./VenteEntreNousContent.module.css";
 
@@ -48,20 +51,18 @@ const STEPS = [
   },
 ];
 
-const QUESTION_PREVIEWS: { categoryId: EntreNousCategoryId; text: string }[] = [
-  { categoryId: "doux", text: "Quel petit geste de quelqu'un t'a marquée plus qu'il ne l'imagine ?" },
+// Questions réellement tirées de la banque Entre Nous (pas de texte
+// marketing inventé), sauf la question Spirituel : absente de la banque,
+// conservée ici sur décision explicite de l'auteure du brief (voir résumé
+// des écarts envoyé après cette implémentation).
+const REAL_SCREEN_QUESTIONS: { categoryId: EntreNousCategoryId; text: string }[] = [
+  { categoryId: "doux", text: "Quel souvenir de nous deux te fait encore sourire rien que d'y penser ?" },
   {
     categoryId: "spirituel",
     text: "Y a-t-il un verset, une invocation ou un rappel qui t'a portée dans une période difficile ?",
   },
-  {
-    categoryId: "defi",
-    text: "Quelle chose importante repousses-tu depuis trop longtemps et que tu pourrais enfin commencer ?",
-  },
-  {
-    categoryId: "decale",
-    text: "Si une journée de ta vie pouvait devenir un film, laquelle mériterait d'être racontée ?",
-  },
+  { categoryId: "defi", text: "Regarde ton amie dans les yeux et dis-lui merci — pour quelque chose de précis." },
+  { categoryId: "decale", text: "Tu préfères une soirée pyjama chez moi ou une sortie improvisée à minuit ?" },
 ];
 
 const BIENVEILLANCE_LIST = [
@@ -243,25 +244,26 @@ export function VenteEntreNousContent() {
       </section>
 
       {/* ---------- APERÇU DE QUESTIONS ---------- */}
-      <section className={styles.section}>
+      <section className={styles.previewSection}>
         <h2 className={styles.sectionTitle}>Un aperçu des questions</h2>
 
-        <div className={styles.previewGrid}>
-          {QUESTION_PREVIEWS.map((preview) => {
-            const category = CATEGORY_BY_ID[preview.categoryId];
-            return (
-              <div key={preview.text} className={styles.previewCard}>
-                <span
-                  className={styles.previewBadge}
-                  style={{ background: category.wheelColor, color: category.textColor }}
-                >
-                  {category.label}
-                </span>
-                <p className={styles.previewText}>{preview.text}</p>
-              </div>
-            );
-          })}
-        </div>
+        <PreviewCarousel
+          slides={[
+            {
+              id: "wheel",
+              ariaLabel: "Écran de la roue Oons, sur le point de s'arrêter sur la catégorie Douceur",
+              content: <WheelScreenPreview featuredCategory="doux" />,
+            },
+            ...REAL_SCREEN_QUESTIONS.map((preview) => {
+              const category = CATEGORY_BY_ID[preview.categoryId];
+              return {
+                id: preview.categoryId,
+                ariaLabel: `Écran de question Oons, catégorie ${category.label} : ${preview.text}`,
+                content: <QuestionScreenPreview categoryId={preview.categoryId} questionText={preview.text} />,
+              };
+            }),
+          ]}
+        />
 
         <div className={styles.ctaBlock}>
           <Link

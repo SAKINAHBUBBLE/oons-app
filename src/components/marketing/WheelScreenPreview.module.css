@@ -1,0 +1,98 @@
+.previewScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 14px 12px 10px;
+  background: var(--color-v2-cream);
+  text-align: center;
+  overflow: hidden;
+}
+
+.topBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 46px;
+  height: auto;
+}
+
+.iconButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-v2-navy);
+  opacity: 0.75;
+}
+
+.iconButton[data-side="left"] {
+  left: 0;
+}
+
+.iconButton[data-side="right"] {
+  right: 0;
+}
+
+.iconButton[data-side="right-inner"] {
+  right: 18px;
+  opacity: 0.65;
+}
+
+.title {
+  margin-top: 12px;
+  margin-bottom: 14px;
+  font-family: var(--font-fraunces), serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-v2-navy);
+  flex-shrink: 0;
+}
+
+.wheelSlot {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.bottomNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  flex-shrink: 0;
+  padding-top: 8px;
+  border-top: 1px solid rgba(22, 38, 74, 0.08);
+}
+
+.navTab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  color: var(--color-v2-navy);
+  opacity: 0.45;
+}
+
+.navTab[data-active="true"] {
+  color: var(--color-v2-coral);
+  opacity: 1;
+}
+
+.navLabel {
+  font-size: 6px;
+  font-weight: 700;
+}
