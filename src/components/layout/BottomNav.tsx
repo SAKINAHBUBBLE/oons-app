@@ -67,12 +67,19 @@ const TABS = [
   },
 ];
 
-export function BottomNav() {
+interface BottomNavProps {
+  // Les écrans de question Oons n'affichent que 3 entrées (Accueil, Favoris,
+  // Profil), sans Historique, contrairement au reste de l'app.
+  variant?: "full" | "compact";
+}
+
+export function BottomNav({ variant = "full" }: BottomNavProps) {
   const pathname = usePathname();
+  const tabs = variant === "compact" ? TABS.filter((tab) => tab.label !== "Historique") : TABS;
 
   return (
     <nav className={styles.nav}>
-      {TABS.map((tab) => {
+      {tabs.map((tab) => {
         const active =
           tab.href === "/app"
             ? pathname === "/app" || pathname.startsWith("/app/question/")
