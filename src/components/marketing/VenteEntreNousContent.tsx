@@ -61,8 +61,7 @@ const REAL_SCREEN_QUESTIONS: { categoryId: EntreNousCategoryId; text: string }[]
     categoryId: "spirituel",
     text: "Y a-t-il un verset, une invocation ou un rappel qui t'a portée dans une période difficile ?",
   },
-  { categoryId: "defi", text: "Regarde ton amie dans les yeux et dis-lui merci — pour quelque chose de précis." },
-  { categoryId: "decale", text: "Tu préfères une soirée pyjama chez moi ou une sortie improvisée à minuit ?" },
+  { categoryId: "decale", text: "Quel est le talent le plus inutile mais le plus impressionnant que tu possèdes ?" },
 ];
 
 const BIENVEILLANCE_LIST = [
