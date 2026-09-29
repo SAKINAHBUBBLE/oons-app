@@ -89,6 +89,14 @@
   --color-v2-icon-decale-b: #9b6fe0;
   --color-v2-icon-spirituel: #3fb98a;
 
+  /* Écrans d'onboarding (Poème, Règle du Jeu) */
+  --color-v2-lavender-text: #8e7fd1;
+  --color-v2-card-bg: #fffcf8;
+  --color-v2-card-rose-bg: #fbe4e2;
+  --color-v2-card-blue-bg: #e4f0fc;
+  --color-v2-card-blue-text: #3170c4;
+  --color-v2-card-yellow-text: #c9852e;
+
   --background: var(--color-cream);
   --foreground: var(--color-navy);
 }
