@@ -344,9 +344,6 @@ export function VenteEntreNousContent() {
 
         {/* eslint-disable-next-line @next/next/no-img-element -- asset vectoriel maître unique ; version claire obtenue par filtre CSS (voir .footerLogo), pas de redessin */}
         <img className={styles.footerLogo} src="/brand/oons-logo-primary.svg" alt="Oons" />
-        <p className={styles.footerQuote}>
-          Ne faites pas que passer le temps. Faites-en un souvenir.
-        </p>
         <p className={styles.footerSignature}>Vous êtes en noble compagnie.</p>
         <p className={styles.footerLegal}>Mentions légales · CGV · Confidentialité</p>
       </footer>
