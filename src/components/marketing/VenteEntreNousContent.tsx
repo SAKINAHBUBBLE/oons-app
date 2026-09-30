@@ -149,7 +149,7 @@ export function VenteEntreNousContent() {
             className={styles.ctaPrimary}
             onClick={() => trackCtaClick("hero")}
           >
-            Découvrir Entre Nous →
+            Découvrir Oons →
           </Link>
           <p className={styles.heroSubtext}>
             + de 750 questions &amp; défis · 5 univers · Achat unique · Sans abonnement
@@ -187,7 +187,7 @@ export function VenteEntreNousContent() {
             className={styles.ctaPrimary}
             onClick={() => trackCtaClick("apres-etapes")}
           >
-            Commencer avec Entre Nous →
+            Commencer maintenant →
           </Link>
         </div>
       </section>
@@ -248,7 +248,7 @@ export function VenteEntreNousContent() {
             className={styles.ctaSecondary}
             onClick={() => trackCtaClick("apercu-questions")}
           >
-            Commencer avec Entre Nous →
+            Rejoins-nous →
           </Link>
         </div>
       </section>
@@ -323,7 +323,7 @@ export function VenteEntreNousContent() {
             className={styles.ctaPrimaryOnNavy}
             onClick={() => trackCtaClick("prix-final")}
           >
-            Commencer avec Entre Nous →
+            Commencer avec Oons →
           </Link>
           <p className={styles.priceBlockSubtext}>Achat unique · Sans abonnement · Accès immédiat</p>
         </div>
